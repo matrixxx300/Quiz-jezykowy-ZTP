@@ -13,6 +13,8 @@ public class QuizSelectController {
     public Stage window;
 
     public Button returnButton;
+    public Button learningButton;
+    public Button testButton;
 
     @FXML
     public void initialize(){
@@ -21,6 +23,12 @@ public class QuizSelectController {
 
     public void back(ActionEvent actionEvent) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MenuView.fxml"));
+        window.setScene(new Scene(root));
+        window.show();
+    }
+
+    public void levelSelect(ActionEvent actionEvent) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/LevelSelectView.fxml"));
         window.setScene(new Scene(root));
         window.show();
     }

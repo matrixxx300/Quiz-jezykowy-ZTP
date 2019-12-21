@@ -20,7 +20,7 @@ public class AddWordController {
     }
 
     public void back(ActionEvent actionEvent) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MenuView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/CRUD/DictionaryView.fxml"));
         window.setScene(new Scene(root));
         window.show();
     }
