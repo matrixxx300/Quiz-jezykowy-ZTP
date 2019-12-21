@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import MainPackage.Main;
 import MainPackage.Menu;
 
+import static Controllers.CRUD.DictionaryController.loadDictionary;
+
 public class MenuController {
     private Menu menuModel;
     public Stage window;
