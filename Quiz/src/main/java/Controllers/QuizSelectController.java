@@ -1,5 +1,6 @@
 package Controllers;
 
+import MainPackage.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,7 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import MainPackage.Main;
+
+import java.io.FileNotFoundException;
+
+import static Controllers.CRUD.DictionaryController.loadDictionary;
 
 public class QuizSelectController {
     public Stage window;
@@ -17,8 +21,9 @@ public class QuizSelectController {
     public Button testButton;
 
     @FXML
-    public void initialize(){
+    public void initialize() throws FileNotFoundException {
         this.window = Main.window;
+        loadDictionary();
     }
 
     public void back(ActionEvent actionEvent) throws Exception{
@@ -27,8 +32,14 @@ public class QuizSelectController {
         window.show();
     }
 
-    public void levelSelect(ActionEvent actionEvent) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/LevelSelectView.fxml"));
+    public void learnQuizLevelSelect(ActionEvent actionEvent) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/LearnQuiz/LearnQuizLevelSelectView.fxml"));
+        window.setScene(new Scene(root));
+        window.show();
+    }
+
+    public void testQuizLevelSelect(ActionEvent actionEvent) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/TestQuizLevelSelectView.fxml"));
         window.setScene(new Scene(root));
         window.show();
     }

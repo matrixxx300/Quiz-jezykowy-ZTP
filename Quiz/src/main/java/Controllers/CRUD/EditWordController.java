@@ -35,6 +35,7 @@ public class EditWordController {
     }
 
     public void editWord(ActionEvent actionEvent) throws IOException {
+        //TODO WSTAWIC ITERATOR
 //        if (!dictionary.containsKey(polishTextField.getText())) {
 //            resultLabel.setText("Danego słowa nie ma w słowniku!");
 //        } else if (!dictionary.containsValue(englishTextField.getText())) {
@@ -43,6 +44,7 @@ public class EditWordController {
             resultLabel.setText("Pola nie mogą być puste!");
         } else{
             FileWriter writer = new FileWriter(new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource("dictionary")).getFile()), true);
+            //TODO WSTAWIC ITERATOR
 //            if (dictionary.containsKey(polishTextField.getText())){
 //                dictionary.replace(polishTextField.getText(), englishTextField.getText());
 //            }else if (dictionary.containsValue(englishTextField.getText())) {
