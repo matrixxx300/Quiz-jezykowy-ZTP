@@ -26,20 +26,20 @@ public class QuizSelectController {
         loadDictionary();
     }
 
-    public void back(ActionEvent actionEvent) throws Exception{
+    public void back() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MenuView.fxml"));
         window.setScene(new Scene(root));
         window.show();
     }
 
-    public void learnQuizLevelSelect(ActionEvent actionEvent) throws Exception{
+    public void learnQuizLevelSelect() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/LearnQuiz/LearnQuizLevelSelectView.fxml"));
         window.setScene(new Scene(root));
         window.show();
     }
 
-    public void testQuizLevelSelect(ActionEvent actionEvent) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/TestQuizLevelSelectView.fxml"));
+    public void testQuizLevelSelect() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/TestQuiz/TestQuizLevelSelectView.fxml"));
         window.setScene(new Scene(root));
         window.show();
     }

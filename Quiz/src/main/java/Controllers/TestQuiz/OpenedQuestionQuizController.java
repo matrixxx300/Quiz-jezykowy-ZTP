@@ -1,4 +1,4 @@
-package Controllers.LearnQuiz;
+package Controllers.TestQuiz;
 
 import MainPackage.Main;
 import javafx.event.ActionEvent;
@@ -16,18 +16,17 @@ import java.util.Random;
 import java.util.Set;
 
 import static Controllers.CRUD.DictionaryController.dictionary;
+import static Controllers.TestQuiz.TestQuizLevelSelectController.*;
 
 public class OpenedQuestionQuizController {
     public Stage window;
 
     public Button returnButton;
     public Button nextButton;
-    public Button checkButton;
     public TextField answerTextField;
-    public Label respondLabel;
     public Text questionText;
 
-    public String question;
+    private String question;
 
     @FXML
     public void initialize() {
@@ -39,34 +38,39 @@ public class OpenedQuestionQuizController {
         for(String string : map){
             if(i == item) {
                 question = string;
+                if (!questionsSet.add(question)) item++;
                 questionText.setText(question);
             }
             i++;
         }
     }
 
-    public void next(ActionEvent actionEvent) throws Exception {
-        int type = new Random().nextInt(2);
-        if(type == 0) {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/LearnQuiz/ClosedQuestionQuizView.fxml"));
+    public void next() throws Exception {
+        if(answerTextField.getText().equals(dictionary.get(question))){
+            score++;
+        }
+        if(count == 9){
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/TestQuiz/EndTestQuizView.fxml"));
             window.setScene(new Scene(root));
             window.show();
-        }else if(type == 1){
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/LearnQuiz/OpenedQuestionQuizView.fxml"));
-            window.setScene(new Scene(root));
-            window.show();
+        }else {
+            count++;
+            int type = new Random().nextInt(2);
+            if (type == 0) {
+                Parent root = FXMLLoader.load(getClass().getResource("/fxml/TestQuiz/ClosedQuestionQuizView.fxml"));
+                window.setScene(new Scene(root));
+                window.show();
+            } else if (type == 1) {
+                Parent root = FXMLLoader.load(getClass().getResource("/fxml/TestQuiz/OpenedQuestionQuizView.fxml"));
+                window.setScene(new Scene(root));
+                window.show();
+            }
         }
     }
 
-    public void back(ActionEvent actionEvent) throws Exception {
+    public void back() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/QuizSelectView.fxml"));
         window.setScene(new Scene(root));
         window.show();
-    }
-
-    public void check(ActionEvent actionEvent) {
-        if(answerTextField.getText().equals(dictionary.get(question))){
-            respondLabel.setText("Dobrze!");
-        } else respondLabel.setText("Źle!");
     }
 }
