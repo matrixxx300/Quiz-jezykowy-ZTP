@@ -32,4 +32,14 @@ public class RankingController {
         window.setScene(new Scene(root));
         window.show();
     }
+
+    public void sortByPoints(ActionEvent actionEvent) {
+        rankingModel.sortByPoints();
+        rankingModel.setList(list);
+    }
+
+    public void sortByLevels(ActionEvent actionEvent) {
+        rankingModel.sortByLevels();
+        rankingModel.setList(list);
+    }
 }
