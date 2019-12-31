@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import MainPackage.Main;
-import MainPackage.Ranking;
+import Ranking.Ranking;
 
 public class RankingController {
     public ListView list;
@@ -34,12 +34,12 @@ public class RankingController {
     }
 
     public void sortByPoints(ActionEvent actionEvent) {
-        rankingModel.sortByPoints();
+        rankingModel.setSortingByPoints();
         rankingModel.setList(list);
     }
 
     public void sortByLevels(ActionEvent actionEvent) {
-        rankingModel.sortByLevels();
+        rankingModel.setSortingByLevel();
         rankingModel.setList(list);
     }
 }
