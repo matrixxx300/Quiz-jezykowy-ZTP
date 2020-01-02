@@ -26,13 +26,13 @@ public class DictionaryController {
     public static Map<String, String> dictionary;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         this.window = Main.window;
     }
 
     public static void loadDictionary() throws FileNotFoundException {
-        Scanner scanner = new Scanner(new FileReader(new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource("dictionary")).getFile())));
-        dictionary = new LinkedHashMap<String, String>();
+        Scanner scanner = new Scanner(new FileReader(new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource("A1dictionary")).getFile())));
+        dictionary = new LinkedHashMap<>();
         String line;
 
         while (scanner.hasNext()) {
@@ -45,28 +45,28 @@ public class DictionaryController {
         scanner.close();
     }
 
-    public void addWord(ActionEvent actionEvent) throws Exception{
+    public void addWord(ActionEvent actionEvent) throws Exception {
         loadDictionary();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/CRUD/AddWordView.fxml"));
         window.setScene(new Scene(root));
         window.show();
     }
 
-    public void editWord(ActionEvent actionEvent) throws Exception{
+    public void editWord(ActionEvent actionEvent) throws Exception {
         loadDictionary();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/CRUD/EditWordView.fxml"));
         window.setScene(new Scene(root));
         window.show();
     }
 
-    public void removeWord(ActionEvent actionEvent) throws Exception{
+    public void removeWord(ActionEvent actionEvent) throws Exception {
         loadDictionary();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/CRUD/RemoveWordView.fxml"));
         window.setScene(new Scene(root));
         window.show();
     }
 
-    public void back(ActionEvent actionEvent) throws Exception{
+    public void back(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MenuView.fxml"));
         window.setScene(new Scene(root));
         window.show();
