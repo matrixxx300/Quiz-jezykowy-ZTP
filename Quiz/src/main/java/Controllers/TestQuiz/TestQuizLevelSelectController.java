@@ -9,9 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+
+import static Controllers.CRUD.DictionaryController.loadDictionary;
 
 public class TestQuizLevelSelectController {
     public Stage window;
@@ -20,22 +21,36 @@ public class TestQuizLevelSelectController {
 
     static int count, score;
     static Set<String> questionsSet;
+    public Button testA1;
+    public Button testA2;
+    public Button testB1;
+    public Button testB2;
+    public Button testC1;
+    public Button testC2;
+    private String selectedLevel;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         this.window = Main.window;
         count = 0;
         score = 0;
         questionsSet = new HashSet<>();
+        selectedLevel = null;
     }
 
-    public void closedQuestionLearnQuiz() throws Exception {
+    public void closedQuestionLearnQuiz(ActionEvent actionEvent) throws Exception {
+        this.selectedLevel = ((Button) actionEvent.getSource()).getText();
+        loadDictionary(this.selectedLevel);
+
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/TestQuiz/ClosedQuestionQuizView.fxml"));
         window.setScene(new Scene(root));
         window.show();
     }
 
-    public void openedQuestionLearnQuiz() throws Exception {
+    public void openedQuestionLearnQuiz(ActionEvent actionEvent) throws Exception {
+        this.selectedLevel = ((Button) actionEvent.getSource()).getText();
+        loadDictionary(this.selectedLevel);
+
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/TestQuiz/OpenedQuestionQuizView.fxml"));
         window.setScene(new Scene(root));
         window.show();

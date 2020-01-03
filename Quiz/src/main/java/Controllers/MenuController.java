@@ -1,5 +1,7 @@
 package Controllers;
 
+import MainPackage.Main;
+import MainPackage.Menu;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,10 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import MainPackage.Main;
-import MainPackage.Menu;
-
-import static Controllers.CRUD.DictionaryController.loadDictionary;
 
 public class MenuController {
     private Menu menuModel;
@@ -46,7 +44,6 @@ public class MenuController {
     }
 
     public void developerTools(ActionEvent actionEvent) throws Exception {
-        loadDictionary();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/DeveloperView.fxml"));
         window.setScene(new Scene(root));
         window.show();
