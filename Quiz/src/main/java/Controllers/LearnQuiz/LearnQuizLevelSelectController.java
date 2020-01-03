@@ -9,23 +9,39 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import static Controllers.CRUD.DictionaryController.loadDictionary;
+
 public class LearnQuizLevelSelectController {
     public Stage window;
-
+    public Button testA1;
+    public Button testA2;
+    public Button testB1;
+    public Button testB2;
+    public Button testC1;
+    public Button testC2;
     public Button returnButton;
+
+    private String selectedLevel;
 
     @FXML
     public void initialize(){
         this.window = Main.window;
+        this.selectedLevel = null;
     }
 
     public void closedQuestionLearnQuiz(ActionEvent actionEvent) throws Exception {
+        this.selectedLevel = ((Button) actionEvent.getSource()).getText();
+        loadDictionary(this.selectedLevel);
+
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/LearnQuiz/ClosedQuestionQuizView.fxml"));
         window.setScene(new Scene(root));
         window.show();
     }
 
     public void openedQuestionLearnQuiz(ActionEvent actionEvent) throws Exception {
+        this.selectedLevel = ((Button) actionEvent.getSource()).getText();
+        loadDictionary(this.selectedLevel);
+
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/LearnQuiz/OpenedQuestionQuizView.fxml"));
         window.setScene(new Scene(root));
         window.show();

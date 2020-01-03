@@ -16,17 +16,16 @@ import static Controllers.CRUD.DictionaryController.loadDictionary;
 
 public class TestQuizLevelSelectController {
     public Stage window;
-
     public Button returnButton;
-
-    static int count, score;
-    static Set<String> questionsSet;
     public Button testA1;
     public Button testA2;
     public Button testB1;
     public Button testB2;
     public Button testC1;
     public Button testC2;
+
+    static int count, score;
+    static Set<String> questionsSet;
     private String selectedLevel;
 
     @FXML
