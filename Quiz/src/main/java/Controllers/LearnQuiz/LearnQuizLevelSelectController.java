@@ -13,13 +13,6 @@ import static Controllers.CRUD.DictionaryController.loadDictionary;
 
 public class LearnQuizLevelSelectController {
     public Stage window;
-    public Button testA1;
-    public Button testA2;
-    public Button testB1;
-    public Button testB2;
-    public Button testC1;
-    public Button testC2;
-    public Button returnButton;
 
     private String selectedLevel;
 
