@@ -1,5 +1,6 @@
 package Controllers.CRUD;
 
+import MainPackage.Main;
 import MainPackage.MainLauncher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,14 +11,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import MainPackage.Main;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 
-import static Controllers.CRUD.DictionaryController.dictionary;
 import static Controllers.CRUD.DictionaryController.loadDictionary;
 
 public class EditWordController {
@@ -28,6 +27,7 @@ public class EditWordController {
     @FXML
     public TextField polishTextField, englishTextField;
     public Label resultLabel;
+    private String selectedLevel = "A1"; //TODO: unhardcode
 
     @FXML
     public void initialize(){
@@ -54,7 +54,7 @@ public class EditWordController {
 //            //writer.write(polishTextField.getText() + "-" + englishTextField.getText() + "\n");
 //            resultLabel.setText("Zedytowano słowo.");
             writer.close();
-            loadDictionary();
+            loadDictionary(this.selectedLevel);
         }
     }
 

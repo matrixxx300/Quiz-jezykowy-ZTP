@@ -1,14 +1,6 @@
 package models;
 
-import MainPackage.MainLauncher;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.Objects;
-
-import static Controllers.CRUD.DictionaryController.loadDictionary;
 
 public class Progress {
     private static final Progress instance = new Progress();
@@ -39,16 +31,16 @@ public class Progress {
 
     public void resetLevelProgress(Level level) {
         level.setMap(null);
-        level.setMap(new HashMap<Word, Integer>());
+        level.setMap(new HashMap<>());
     }
 
     public void resetWholeProgress() {
-        for (int i = 0; i < levels.length; i++) {
-            resetLevelProgress(this.levels[i]);
+        for (Level level : levels) {
+            resetLevelProgress(level);
         }
     }
 
-    public void saveProgress() throws IOException {
+    public void saveProgress() {
         // TODO:
     }
 }

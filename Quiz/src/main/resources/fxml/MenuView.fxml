@@ -6,21 +6,25 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MenuController">
-   <columnConstraints>
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-   </rowConstraints>
-   <children>
-      <Pane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0">
-         <children>
-            <Button fx:id="quizSelectButton" layoutX="350.0" layoutY="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#quizSelect" text="START" />
-            <Button fx:id="rankingButton" layoutX="350.0" layoutY="200.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#ranking" text="RANKING" />
-            <Button fx:id="dictionaryButton" layoutX="350.0" layoutY="300.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#dictionary" text="SŁOWNIK" />
-            <Button fx:id="exitButton" layoutX="350.0" layoutY="400.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#exit" text="WYJDŹ" />
-         </children>
-      </Pane>
-   </children>
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MenuController">
+    <columnConstraints>
+        <ColumnConstraints/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints/>
+    </rowConstraints>
+    <Pane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0"
+          prefWidth="800.0">
+        <Button fx:id="quizSelectButton" layoutX="350.0" layoutY="100.0" minHeight="30.0" minWidth="100.0"
+                mnemonicParsing="false" onAction="#quizSelect" text="START"/>
+        <Button fx:id="rankingButton" layoutX="350.0" layoutY="200.0" minHeight="30.0" minWidth="100.0"
+                mnemonicParsing="false" onAction="#ranking" text="RANKING"/>
+        <Button fx:id="dictionaryButton" layoutX="350.0" layoutY="300.0" minHeight="30.0" minWidth="100.0"
+                mnemonicParsing="false" onAction="#dictionary" text="SŁOWNIK"/>
+        <Button fx:id="exitButton" layoutX="350.0" layoutY="400.0" minHeight="30.0" minWidth="100.0"
+                mnemonicParsing="false" onAction="#exit" text="WYJDŹ"/>
+        <Button layoutX="325.0" layoutY="500.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0"
+                onAction="#developerTools" text="developer tools"/>
+    </Pane>
 </GridPane>

@@ -1,5 +1,6 @@
 package Controllers.CRUD;
 
+import MainPackage.Main;
 import MainPackage.MainLauncher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import MainPackage.Main;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -27,6 +27,7 @@ public class RemoveWordController {
     @FXML
     public TextField polishTextField, englishTextField;
     public Label resultLabel;
+    private String selectedLevel = "A1"; //TODO: unhardcode
 
     @FXML
     public void initialize(){
@@ -52,7 +53,7 @@ public class RemoveWordController {
             //writer.write(polishTextField.getText() + "-" + englishTextField.getText() + "\n");
             resultLabel.setText("Usunięto słowo.");
             writer.close();
-            loadDictionary();
+            loadDictionary(this.selectedLevel);
         }
     }
 }
