@@ -39,7 +39,7 @@ public class DictionaryController {
         while (scanner.hasNext()) {
             line = scanner.nextLine();
             if (!line.startsWith("#") && !line.isEmpty()) {
-                String[] columns = line.split("-");
+                String[] columns = line.split("=");
                 dictionary.put(columns[0], columns[1]);
             }
         }
