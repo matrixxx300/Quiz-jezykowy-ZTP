@@ -6,38 +6,45 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import models.Dictionary;
 
+import java.io.IOException;
 import java.util.Random;
 import java.util.Set;
 
-import static Controllers.CRUD.DictionaryController.dictionary;
-
 public class OpenedQuestionQuizController {
     public Stage window;
+    public String question;
+    private Dictionary dictionary;
 
-    public Button returnButton;
-    public Button nextButton;
-    public Button checkButton;
+    @FXML
     public TextField answerTextField;
     public Label respondLabel;
     public Text questionText;
 
-    public String question;
+    public OpenedQuestionQuizController(Dictionary dictionary) throws IOException {
+        this.dictionary = dictionary;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LearnQuiz/OpenedQuestionQuizView.fxml"));
+        loader.setController(this);
+
+        this.window = Main.window;
+        this.window.setScene(new Scene(loader.load()));
+        this.window.setTitle("Nauka słówek - pytania otwarte");
+        this.window.show();
+    }
 
     @FXML
     public void initialize() {
-        this.window = Main.window;
-        Set<String> map = dictionary.keySet();
+        Set<String> map = dictionary.getWordList().keySet();
         int size = map.size();
         int item = new Random().nextInt(size);
-        int i=0;
-        for(String string : map){
-            if(i == item) {
+        int i = 0;
+        for (String string : map) {
+            if (i == item) {
                 question = string;
                 questionText.setText(question);
             }
@@ -47,14 +54,10 @@ public class OpenedQuestionQuizController {
 
     public void next(ActionEvent actionEvent) throws Exception {
         int type = new Random().nextInt(2);
-        if(type == 0) {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/LearnQuiz/ClosedQuestionQuizView.fxml"));
-            window.setScene(new Scene(root));
-            window.show();
-        }else if(type == 1){
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/LearnQuiz/OpenedQuestionQuizView.fxml"));
-            window.setScene(new Scene(root));
-            window.show();
+        if (type == 0) {
+            ClosedQuestionQuizController closedQuestionQuizController = new ClosedQuestionQuizController(this.dictionary);
+        } else if (type == 1) {
+            OpenedQuestionQuizController openedQuestionQuizController = new OpenedQuestionQuizController(this.dictionary);
         }
     }
 
@@ -65,7 +68,7 @@ public class OpenedQuestionQuizController {
     }
 
     public void check(ActionEvent actionEvent) {
-        if(answerTextField.getText().equals(dictionary.get(question))){
+        if (answerTextField.getText().equals(dictionary.getWordList().get(question))) {
             respondLabel.setText("Dobrze!");
         } else respondLabel.setText("Źle!");
     }

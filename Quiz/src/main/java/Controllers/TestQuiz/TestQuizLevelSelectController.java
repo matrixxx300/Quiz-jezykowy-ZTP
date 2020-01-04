@@ -8,18 +8,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import models.Dictionary;
+import models.Level;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static Controllers.CRUD.DictionaryController.loadDictionary;
-
 public class TestQuizLevelSelectController {
     public Stage window;
+    private String selectedLevel;
+    private Dictionary dictionary;
 
+    //todo: Przerobić ze statycznych na zwykłe prywantne! Dr Bołdak byłby zawiedziony, gdyby to zobaczył...
     static int count, score;
     static Set<String> questionsSet;
-    private String selectedLevel;
 
     @FXML
     public void initialize() {
@@ -30,22 +32,20 @@ public class TestQuizLevelSelectController {
         selectedLevel = null;
     }
 
+    public Dictionary getDictionary() {
+        return dictionary;
+    }
+
     public void closedQuestionLearnQuiz(ActionEvent actionEvent) throws Exception {
         this.selectedLevel = ((Button) actionEvent.getSource()).getText();
-        loadDictionary(this.selectedLevel);
-
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/TestQuiz/ClosedQuestionQuizView.fxml"));
-        window.setScene(new Scene(root));
-        window.show();
+        this.dictionary = new Dictionary(new Level(this.selectedLevel));
+        ClosedQuestionQuizController closedQuestionQuizController = new ClosedQuestionQuizController(this.dictionary);
     }
 
     public void openedQuestionLearnQuiz(ActionEvent actionEvent) throws Exception {
         this.selectedLevel = ((Button) actionEvent.getSource()).getText();
-        loadDictionary(this.selectedLevel);
-
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/TestQuiz/OpenedQuestionQuizView.fxml"));
-        window.setScene(new Scene(root));
-        window.show();
+        this.dictionary = new Dictionary(new Level(this.selectedLevel));
+        OpenedQuestionQuizController openedQuestionQuizController = new OpenedQuestionQuizController(this.dictionary);
     }
 
     public void back() throws Exception {

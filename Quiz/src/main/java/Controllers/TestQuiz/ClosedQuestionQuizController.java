@@ -1,45 +1,51 @@
 package Controllers.TestQuiz;
 
 import MainPackage.Main;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import models.Dictionary;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import static Controllers.CRUD.DictionaryController.dictionary;
 import static Controllers.TestQuiz.TestQuizLevelSelectController.*;
 
 public class ClosedQuestionQuizController {
     public Stage window;
-
-    public Button returnButton;
-    public Button nextButton;
-    @FXML
-    public Button buttonA, buttonB, buttonC, buttonD;
-    public Text questionText;
-
+    private Dictionary dictionary;
     private String question;
     private Set<String> answerSet = new HashSet<>();
 
     @FXML
-    public void initialize() {
-        this.window = Main.window;
+    public Button buttonA, buttonB, buttonC, buttonD;
+    public Text questionText;
+    
+    public ClosedQuestionQuizController(Dictionary dictionary) throws IOException {
+        this.dictionary = dictionary;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TestQuiz/ClosedQuestionQuizView.fxml"));
+        loader.setController(this);
 
+        this.window = Main.window;
+        this.window.setScene(new Scene(loader.load()));
+        this.window.setTitle("Test zamknięty");
+        this.window.show();
+    }
+
+    @FXML
+    public void initialize() {
         question = getRandomQuestion();
         while (!questionsSet.add(question)) question = getRandomQuestion();
         questionText.setText(question);
 
-        answerSet.add(dictionary.get(question));
+        answerSet.add(dictionary.getWordList().get(question));
         for (int i = 1; i < 4; i++) {
             String answer = getRandomAnswer();
             while (!answerSet.add(answer)) answer = getRandomAnswer();
@@ -77,7 +83,7 @@ public class ClosedQuestionQuizController {
     }
 
     private String getRandomQuestion() {
-        Set<String> map = dictionary.keySet();
+        Set<String> map = dictionary.getWordList().keySet();
         int size = map.size();
         int item = new Random().nextInt(size);
         int i = 0;
@@ -89,7 +95,7 @@ public class ClosedQuestionQuizController {
     }
 
     private String getRandomAnswer() {
-        Collection<String> map = dictionary.values();
+        Collection<String> map = dictionary.getWordList().values();
         int size = map.size();
         int item = new Random().nextInt(size);
         int i = 0;
@@ -109,40 +115,36 @@ public class ClosedQuestionQuizController {
             count++;
             int type = new Random().nextInt(2);
             if (type == 0) {
-                Parent root = FXMLLoader.load(getClass().getResource("/fxml/TestQuiz/ClosedQuestionQuizView.fxml"));
-                window.setScene(new Scene(root));
-                window.show();
+                ClosedQuestionQuizController closedQuestionQuizController = new ClosedQuestionQuizController(this.dictionary);
             } else if (type == 1) {
-                Parent root = FXMLLoader.load(getClass().getResource("/fxml/TestQuiz/OpenedQuestionQuizView.fxml"));
-                window.setScene(new Scene(root));
-                window.show();
+                OpenedQuestionQuizController openedQuestionQuizController = new OpenedQuestionQuizController(this.dictionary);
             }
         }
     }
 
     public void checkA() throws Exception {
-        if (buttonA.getText().equals(dictionary.get(question))) {
+        if (buttonA.getText().equals(dictionary.getWordList().get(question))) {
             score++;
         }
         next();
     }
 
     public void checkB() throws Exception {
-        if (buttonB.getText().equals(dictionary.get(question))) {
+        if (buttonB.getText().equals(dictionary.getWordList().get(question))) {
             score++;
         }
         next();
     }
 
     public void checkC() throws Exception {
-        if (buttonC.getText().equals(dictionary.get(question))) {
+        if (buttonC.getText().equals(dictionary.getWordList().get(question))) {
             score++;
         }
         next();
     }
 
     public void checkD() throws Exception {
-        if (buttonD.getText().equals(dictionary.get(question))) {
+        if (buttonD.getText().equals(dictionary.getWordList().get(question))) {
             score++;
         }
         next();
