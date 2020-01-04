@@ -11,9 +11,12 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
-import static Controllers.CRUD.DictionaryController.dictionary;
+import static Controllers.CRUD.DictionaryController.oldDict;
 
 public class ClosedQuestionQuizController {
     public Stage window;
@@ -34,7 +37,7 @@ public class ClosedQuestionQuizController {
         question = getRandomQuestion();
         questionText.setText(question);
 
-        answerSet.add(dictionary.get(question));
+        answerSet.add(oldDict.get(question));
         for(int i=1; i<4; i++) {
             String answer = getRandomAnswer();
             while (!answerSet.add(answer)) answer = getRandomAnswer();
@@ -72,7 +75,7 @@ public class ClosedQuestionQuizController {
     }
 
     private String getRandomQuestion() {
-        Set<String> map = dictionary.keySet();
+        Set<String> map = oldDict.keySet();
         int size = map.size();
         int item = new Random().nextInt(size);
         int i=0;
@@ -84,7 +87,7 @@ public class ClosedQuestionQuizController {
     }
 
     private String getRandomAnswer() {
-        Collection<String> map = dictionary.values();
+        Collection<String> map = oldDict.values();
         int size = map.size();
         int item = new Random().nextInt(size);
         int i=0;
@@ -109,25 +112,25 @@ public class ClosedQuestionQuizController {
     }
 
     public void checkA(ActionEvent actionEvent){
-        if(buttonA.getText().equals(dictionary.get(question))){
+        if(buttonA.getText().equals(oldDict.get(question))){
             respondLabel.setText("Dobrze!");
         } else respondLabel.setText("Źle!");
     }
 
     public void checkB(ActionEvent actionEvent){
-        if(buttonB.getText().equals(dictionary.get(question))){
+        if(buttonB.getText().equals(oldDict.get(question))){
             respondLabel.setText("Dobrze!");
         } else respondLabel.setText("Źle!");
     }
 
     public void checkC(ActionEvent actionEvent){
-        if(buttonC.getText().equals(dictionary.get(question))){
+        if(buttonC.getText().equals(oldDict.get(question))){
             respondLabel.setText("Dobrze!");
         } else respondLabel.setText("Źle!");
     }
 
     public void checkD(ActionEvent actionEvent){
-        if(buttonD.getText().equals(dictionary.get(question))){
+        if(buttonD.getText().equals(oldDict.get(question))){
             respondLabel.setText("Dobrze!");
         } else respondLabel.setText("Źle!");
     }

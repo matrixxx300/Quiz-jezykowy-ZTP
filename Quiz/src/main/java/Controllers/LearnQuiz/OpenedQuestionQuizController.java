@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import java.util.Random;
 import java.util.Set;
 
-import static Controllers.CRUD.DictionaryController.dictionary;
+import static Controllers.CRUD.DictionaryController.oldDict;
 
 public class OpenedQuestionQuizController {
     public Stage window;
@@ -32,7 +32,7 @@ public class OpenedQuestionQuizController {
     @FXML
     public void initialize() {
         this.window = Main.window;
-        Set<String> map = dictionary.keySet();
+        Set<String> map = oldDict.keySet();
         int size = map.size();
         int item = new Random().nextInt(size);
         int i=0;
@@ -65,7 +65,7 @@ public class OpenedQuestionQuizController {
     }
 
     public void check(ActionEvent actionEvent) {
-        if(answerTextField.getText().equals(dictionary.get(question))){
+        if(answerTextField.getText().equals(oldDict.get(question))){
             respondLabel.setText("Dobrze!");
         } else respondLabel.setText("Źle!");
     }
