@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -20,22 +19,25 @@ import java.util.Objects;
 
 public class EditWordController {
     public Stage window;
-
-    public Button returnButton;
+    private Dictionary dictionary;
 
     @FXML
     public TextField polishTextField, englishTextField;
     public Label resultLabel;
-    private Dictionary dictionary;
-    private String selectedLevel = "A1"; //TODO: unhardcode
 
-    public EditWordController(DictionaryController dictionaryController) {
+    public EditWordController(DictionaryController dictionaryController) throws IOException {
         this.dictionary = dictionaryController.getDictionary();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CRUD/EditWordView.fxml"));
+        loader.setController(this);
+
+        this.window = Main.window;
+        window.setScene(new Scene(loader.load()));
+        window.setTitle("Edycja słowa");
+        window.show();
     }
 
     @FXML
     public void initialize() {
-        this.window = Main.window;
     }
 
     public void editWord(ActionEvent actionEvent) throws IOException {
@@ -55,7 +57,7 @@ public class EditWordController {
 //                dictionary.getWordList().replace(polishTextField.getText(), englishTextField.getText());
 //            }
 //            writer.
-//            //writer.write(polishTextField.getText() + "-" + englishTextField.getText() + "\n");
+//            //writer.write(polishTextField.getText() + "=" + englishTextField.getText() + "\n");
 //            resultLabel.setText("Zedytowano słowo.");
             writer.close();
             dictionary = new Dictionary(dictionary.getLevel());

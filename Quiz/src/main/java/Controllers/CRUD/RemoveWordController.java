@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -20,21 +19,25 @@ import java.util.Objects;
 
 public class RemoveWordController {
     public Stage window;
+    private Dictionary dictionary;
 
-    public Button returnButton;
     @FXML
     public TextField polishTextField, englishTextField;
     public Label resultLabel;
-    private Dictionary dictionary;
-    private String selectedLevel = "A1"; //TODO: unhardcode
 
-    public RemoveWordController(DictionaryController dictionaryController) {
+    public RemoveWordController(DictionaryController dictionaryController) throws IOException {
         this.dictionary = dictionaryController.getDictionary();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CRUD/RemoveWordView.fxml"));
+        loader.setController(this);
+
+        this.window = Main.window;
+        window.setScene(new Scene(loader.load()));
+        window.setTitle("Usuwanie słowa");
+        window.show();
     }
 
     @FXML
     public void initialize() {
-        this.window = Main.window;
     }
 
     public void back(ActionEvent actionEvent) throws Exception {
@@ -53,7 +56,7 @@ public class RemoveWordController {
         } else {
             FileWriter writer = new FileWriter(new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource("dictionary")).getFile()), true);
             //dictionary.get(polishTextField.getText());
-            //writer.write(polishTextField.getText() + "-" + englishTextField.getText() + "\n");
+            //writer.write(polishTextField.getText() + "=" + englishTextField.getText() + "\n");
             resultLabel.setText("Usunięto słowo.");
             writer.close();
             dictionary = new Dictionary(dictionary.getLevel());

@@ -26,7 +26,9 @@ public class DictionaryController {
     public Dictionary getDictionary() {
         return dictionary;
     }
+
     public static Map<String, String> oldDict;
+
     public static void loadDictionary(String selectedLevel) {
     }
 
@@ -38,21 +40,11 @@ public class DictionaryController {
     public void editWord(ActionEvent actionEvent) throws Exception {
         this.dictionary = new Dictionary(new Level(this.selectedLevel));
         EditWordController editWordController = new EditWordController(this);
-
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/CRUD/EditWordView.fxml"));
-        window.setScene(new Scene(root));
-        window.setTitle("Edycja słowa");
-        window.show();
     }
 
     public void removeWord(ActionEvent actionEvent) throws Exception {
         this.dictionary = new Dictionary(new Level(this.selectedLevel));
         RemoveWordController removeWordController = new RemoveWordController(this);
-
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/CRUD/RemoveWordView.fxml"));
-        window.setScene(new Scene(root));
-        window.setTitle("Usuwanie słowa");
-        window.show();
     }
 
     public void back(ActionEvent actionEvent) throws Exception {

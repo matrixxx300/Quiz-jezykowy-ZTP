@@ -25,21 +25,19 @@ public class AddWordController {
     public TextField polishTextField, englishTextField;
     public Label resultLabel;
 
-    public AddWordController() {
-    }
-
     public AddWordController(DictionaryController dictionaryController) throws IOException {
         this.dictionary = dictionaryController.getDictionary();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CRUD/AddWordView.fxml"));
         loader.setController(this);
-        window.setScene(new Scene(loader.load()));
-        window.setTitle("Dodawanie słowa");
-        window.show();
+
+        this.window = Main.window;
+        this.window.setScene(new Scene(loader.load()));
+        this.window.setTitle("Dodawanie słowa");
+        this.window.show();
     }
 
     @FXML
     public void initialize() {
-        this.window = Main.window;
     }
 
     public void addWord(ActionEvent actionEvent) throws IOException {
@@ -50,7 +48,7 @@ public class AddWordController {
         } else if (polishTextField.getText().equals("") || englishTextField.getText().equals("")) {
             resultLabel.setText("Pola nie mogą być puste!");
         } else {
-            FileWriter writer = new FileWriter(new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource("dictionary")).getFile()), true);
+            FileWriter writer = new FileWriter(new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource(dictionary.getLevel().getName() + "dictionary")).getFile()), true);
             writer.write(polishTextField.getText() + "=" + englishTextField.getText() + "\n");
             resultLabel.setText("Dodano słowo.");
             writer.close();
