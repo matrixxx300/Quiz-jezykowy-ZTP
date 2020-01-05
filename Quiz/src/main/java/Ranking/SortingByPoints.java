@@ -1,32 +1,32 @@
 package Ranking;
 
-import Ranking.Ranking;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+//TODO: Przenieść do modeli, w celu spełnienia wzorca MVC.
 public class SortingByPoints implements Sorting {
     @Override
     public void sort(Ranking ranking) {
-        ObservableList<String> rankingHelpList = FXCollections.observableArrayList ("", "", "", "", "", "");
-        String help = "";
-        int point = 0;
+        ObservableList<String> rankingHelpList = FXCollections.observableArrayList("", "", "", "", "", "");
+        String help;
+        int point;
         int[] points = new int[6];
 
-        for(int i=0; i<points.length; i++){
+        for (int i = 0; i < points.length; i++) {
             help = ranking.rankingList.get(i);
-            help = help.charAt(5)+""+help.charAt(6);
+            help = help.charAt(5) + "" + help.charAt(6);
             point = Integer.parseInt(help);
             points[i] = point;
         }
 
         //sortowanie tablicy points
-        for(int i=0; i<points.length; i++){
+        for (int i = 0; i < points.length; i++) {
             int min;
-            for(int j=0; j<points.length; j++){
-                if(points[j] < points[i]){
+            for (int j = 0; j < points.length; j++) {
+                if (points[j] < points[i]) {
                     min = points[i];
-                    points[i]=points[j];
-                    points[j]=min;
+                    points[i] = points[j];
+                    points[j] = min;
                 }
             }
         }
@@ -55,6 +55,6 @@ public class SortingByPoints implements Sorting {
                 rankingHelpList.set(5, s);
             }
         }
-        ranking.rankingList=rankingHelpList;
+        ranking.rankingList = rankingHelpList;
     }
 }

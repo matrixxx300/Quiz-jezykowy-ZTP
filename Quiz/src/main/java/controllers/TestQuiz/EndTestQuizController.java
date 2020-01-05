@@ -1,4 +1,4 @@
-package Controllers.TestQuiz;
+package controllers.TestQuiz;
 
 import MainPackage.Main;
 import javafx.fxml.FXML;
@@ -9,8 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-import static Controllers.TestQuiz.TestQuizLevelSelectController.count;
-import static Controllers.TestQuiz.TestQuizLevelSelectController.score;
+import static controllers.TestQuiz.TestQuizLevelSelectController.count;
+import static controllers.TestQuiz.TestQuizLevelSelectController.score;
 
 public class EndTestQuizController {
     public Stage window;

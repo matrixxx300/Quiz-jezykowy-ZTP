@@ -1,7 +1,6 @@
-package Controllers;
+package controllers;
 
 import MainPackage.Main;
-import MainPackage.Menu;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

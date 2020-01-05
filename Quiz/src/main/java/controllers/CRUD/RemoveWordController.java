@@ -1,4 +1,4 @@
-package Controllers.CRUD;
+package controllers.CRUD;
 
 import MainPackage.Main;
 import MainPackage.MainLauncher;

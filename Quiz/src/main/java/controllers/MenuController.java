@@ -1,7 +1,6 @@
-package Controllers;
+package controllers;
 
 import MainPackage.Main;
-import MainPackage.Menu;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class MenuController {
-    private Menu menuModel;
     public Stage window;
 
     public Button quizSelectButton;
@@ -21,7 +19,6 @@ public class MenuController {
 
     @FXML
     public void initialize() {
-        this.menuModel = new Menu();
         this.window = Main.window;
     }
 

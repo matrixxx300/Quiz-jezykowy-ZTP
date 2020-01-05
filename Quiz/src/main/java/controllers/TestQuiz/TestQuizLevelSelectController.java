@@ -1,4 +1,4 @@
-package Controllers.TestQuiz;
+package controllers.TestQuiz;
 
 import MainPackage.Main;
 import javafx.event.ActionEvent;

@@ -3,12 +3,13 @@ package Ranking;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+//TODO: Przenieść do modeli, w celu spełnienia wzorca MVC.
 public class SortingByLevel implements Sorting {
 
     @Override
     public void sort(Ranking ranking) {
-        ObservableList<String> rankingHelpList = FXCollections.observableArrayList ("", "", "", "", "", "");
-        String help = "";
+        ObservableList<String> rankingHelpList = FXCollections.observableArrayList("", "", "", "", "", "");
+        String help;
 
         for (String s : ranking.rankingList) {
             help = s;
@@ -31,6 +32,6 @@ public class SortingByLevel implements Sorting {
                 rankingHelpList.set(5, help);
             }
         }
-        ranking.rankingList=rankingHelpList;
+        ranking.rankingList = rankingHelpList;
     }
 }

@@ -1,4 +1,4 @@
-package Controllers.TestQuiz;
+package controllers.TestQuiz;
 
 import MainPackage.Main;
 import javafx.fxml.FXML;
@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Set;
 
-import static Controllers.TestQuiz.TestQuizLevelSelectController.*;
+import static controllers.TestQuiz.TestQuizLevelSelectController.*;
 
 public class OpenedQuestionQuizController {
     public Stage window;
