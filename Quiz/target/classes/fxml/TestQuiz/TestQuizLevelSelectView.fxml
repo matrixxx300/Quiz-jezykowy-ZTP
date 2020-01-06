@@ -6,24 +6,24 @@
 <?import javafx.scene.text.Text?>
 <Pane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0"
       xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="controllers.TestQuiz.TestQuizLevelSelectController">
-   <Text layoutX="277.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wybierz poziom zaawansowania">
-      <font>
-         <Font size="18.0"/>
-      </font>
-   </Text>
-   <Button fx:id="testA1" layoutX="380.0" layoutY="100.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
-           onAction="#closedQuestionLearnQuiz" text="A1"/>
-   <Button fx:id="testA2" layoutX="380.0" layoutY="150.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
-           onAction="#closedQuestionLearnQuiz" text="A2"/>
-   <Button fx:id="testB1" layoutX="380.0" layoutY="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
-           onAction="#closedQuestionLearnQuiz" text="B1"/>
-   <Button fx:id="testB2" layoutX="380.0" layoutY="250.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
-           onAction="#closedQuestionLearnQuiz" text="B2"/>
-   <Button fx:id="testC1" layoutX="380.0" layoutY="300.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
-           onAction="#openedQuestionLearnQuiz" text="C1"/>
-   <Button fx:id="testC2" layoutX="380.0" layoutY="350.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
-           onAction="#openedQuestionLearnQuiz" text="C2"/>
-   <Button fx:id="returnButton" layoutX="350.0" layoutY="500.0" mnemonicParsing="false" onAction="#back"
-           prefWidth="100.0" text="Powrót"/>
+      fx:controller="controllers.test.TestQuizLevelSelectController">
+    <Text layoutX="277.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wybierz poziom zaawansowania">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Text>
+    <Button layoutX="380.0" layoutY="100.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
+            onAction="#closedQuestionLearnQuiz" text="A1"/>
+    <Button layoutX="380.0" layoutY="150.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
+            onAction="#closedQuestionLearnQuiz" text="A2"/>
+    <Button layoutX="380.0" layoutY="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
+            onAction="#closedQuestionLearnQuiz" text="B1"/>
+    <Button layoutX="380.0" layoutY="250.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
+            onAction="#closedQuestionLearnQuiz" text="B2"/>
+    <Button layoutX="380.0" layoutY="300.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
+            onAction="#openedQuestionLearnQuiz" text="C1"/>
+    <Button layoutX="380.0" layoutY="350.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
+            onAction="#openedQuestionLearnQuiz" text="C2"/>
+    <Button layoutX="350.0" layoutY="500.0" mnemonicParsing="false" onAction="#back"
+            prefWidth="100.0" text="Powrót"/>
 </Pane>

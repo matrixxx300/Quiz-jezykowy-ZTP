@@ -12,7 +12,7 @@ public abstract class Question {
     }
 
     public String getQuestionText() {
-        return englishToPolish ? this.correctAnswer.getEnglishWord() : this.correctAnswer.getPolishWord();
+        return !englishToPolish ? this.correctAnswer.getEnglishWord() : this.correctAnswer.getPolishWord();
     }
 
     public String getCorrectAnswer(){
