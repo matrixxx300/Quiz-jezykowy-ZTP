@@ -1,7 +1,5 @@
 package controllers;
 
-import MainPackage.Main;
-import Ranking.Ranking;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import main.Main;
+import refactor.Ranking;
 
 public class RankingController {
     private Stage window;

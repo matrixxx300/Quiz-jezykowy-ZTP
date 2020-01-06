@@ -1,12 +1,12 @@
 package controllers;
 
-import MainPackage.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import main.Main;
 
 public class QuizSelectController {
     public Stage window;

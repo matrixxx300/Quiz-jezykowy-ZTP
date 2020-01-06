@@ -1,4 +1,4 @@
-package MainPackage;
+package main;
 
 public class MainLauncher {
 

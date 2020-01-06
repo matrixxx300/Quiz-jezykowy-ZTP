@@ -1,12 +1,12 @@
 package controllers.CRUD;
 
-import MainPackage.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.Main;
 import models.Dictionary;
 import models.Level;
 

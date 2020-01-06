@@ -1,7 +1,5 @@
 package controllers.CRUD;
 
-import MainPackage.Main;
-import MainPackage.MainLauncher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import main.Main;
+import main.MainLauncher;
 import models.Dictionary;
+import models.Word;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -41,9 +42,8 @@ public class AddWordController {
     }
 
     public void addWord(ActionEvent actionEvent) throws IOException {
-        if (dictionary.getWordList().containsKey(polishTextField.getText())) {
-            resultLabel.setText("Dane słowo już jest w słowniku!");
-        } else if (dictionary.getWordList().containsValue(englishTextField.getText())) {
+        Word wordToAdd = new Word(englishTextField.getText(), polishTextField.getText());
+        if (dictionary.getWordList().contains(wordToAdd)) {
             resultLabel.setText("Dane słowo już jest w słowniku!");
         } else if (polishTextField.getText().equals("") || englishTextField.getText().equals("")) {
             resultLabel.setText("Pola nie mogą być puste!");

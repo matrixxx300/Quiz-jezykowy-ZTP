@@ -1,6 +1,5 @@
-package controllers.LearnQuiz;
+package controllers.learn;
 
-import MainPackage.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,16 +9,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import main.Main;
 import models.Dictionary;
+import models.question.OpenedQuestion;
 
 import java.io.IOException;
 import java.util.Random;
-import java.util.Set;
 
 public class OpenedQuestionQuizController {
     public Stage window;
-    public String question;
+
+    //TODO Do modelu
     private Dictionary dictionary;
+    public OpenedQuestion question;
+    // ------------------------------
 
     @FXML
     public TextField answerTextField;
@@ -27,10 +30,15 @@ public class OpenedQuestionQuizController {
     public Text questionText;
 
     public OpenedQuestionQuizController(Dictionary dictionary) throws IOException {
+        //TODO Do modelu
         this.dictionary = dictionary;
+        Random random = new Random();
+        boolean englishOrPolish = random.nextBoolean();
+        question = new OpenedQuestion(dictionary.getRandomWord(), englishOrPolish);
+        // ------------------------------
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LearnQuiz/OpenedQuestionQuizView.fxml"));
         loader.setController(this);
-
         this.window = Main.window;
         this.window.setScene(new Scene(loader.load()));
         this.window.setTitle("Nauka słówek - pytania otwarte");
@@ -39,17 +47,7 @@ public class OpenedQuestionQuizController {
 
     @FXML
     public void initialize() {
-        Set<String> map = dictionary.getWordList().keySet();
-        int size = map.size();
-        int item = new Random().nextInt(size);
-        int i = 0;
-        for (String string : map) {
-            if (i == item) {
-                question = string;
-                questionText.setText(question);
-            }
-            i++;
-        }
+        questionText.setText(question.getQuestionText());
     }
 
     public void next(ActionEvent actionEvent) throws Exception {
@@ -68,7 +66,7 @@ public class OpenedQuestionQuizController {
     }
 
     public void check(ActionEvent actionEvent) {
-        if (answerTextField.getText().equals(dictionary.getWordList().get(question))) {
+        if (answerTextField.getText().equals(question.getCorrectAnswer())) {
             respondLabel.setText("Dobrze!");
         } else respondLabel.setText("Źle!");
     }
