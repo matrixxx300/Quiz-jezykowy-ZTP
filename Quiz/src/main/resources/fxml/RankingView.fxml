@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.Pane?>
 <Pane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0"
       xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="controllers.RankingController">
+      fx:controller="controller.RankingController">
     <ListView fx:id="list" layoutX="200.0" layoutY="100.0" prefHeight="400.0" prefWidth="400.0"/>
     <Button layoutX="125.0" layoutY="42.0" mnemonicParsing="false" onAction="#sortByPoints" prefHeight="30.0"
             prefWidth="150.0" text="Sortuj punktami"/>
