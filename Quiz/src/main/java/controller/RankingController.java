@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import main.Main;
-import ranking.Ranking;
+import model.ranking.Ranking;
 
 public class RankingController {
     private Stage window;

@@ -1,4 +1,4 @@
-package ranking;
+package model.ranking;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
