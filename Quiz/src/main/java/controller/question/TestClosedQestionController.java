@@ -1,26 +1,23 @@
-package controller.test;
+package controller.question;
 
-import controller.question.QuestionController;
+import controller.EndTestQuizController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import main.Main;
 import model.question.ClosedQuestion;
 import model.quiz.Quiz;
+import model.quiz.TestQuiz;
 
 import java.io.IOException;
 
-import static controller.test.TestQuizLevelSelectController.count;
-import static controller.test.TestQuizLevelSelectController.score;
-
-public class ClosedQuestionQuizController extends QuestionController {
+public class TestClosedQestionController extends QuestionController {
 
     @FXML
     public Button buttonA, buttonB, buttonC, buttonD;
 
-    public ClosedQuestionQuizController(Quiz quiz) throws IOException {
+    public TestClosedQestionController(Quiz quiz) throws IOException {
         this.quiz = quiz;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TestQuiz/ClosedQuestionQuizView.fxml"));
@@ -34,6 +31,7 @@ public class ClosedQuestionQuizController extends QuestionController {
     @FXML
     @Override
     public void initialize() {
+        super.initialize();
         String[] answerArray = ((ClosedQuestion) this.quiz.getQuestion()).toAnswerArray();
 
         buttonA.setText(answerArray[0]);
@@ -44,40 +42,37 @@ public class ClosedQuestionQuizController extends QuestionController {
 
     @Override
     public void next() throws Exception {
-        if (count == 9) {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/TestQuiz/EndTestQuizView.fxml"));
-            window.setScene(new Scene(root));
-            window.show();
+        if (quiz.getQuestions().size() == 10) {
+            new EndTestQuizController((TestQuiz) quiz);
         } else {
-            count++;
+            super.next();
         }
-        super.next();
     }
 
     public void checkA() throws Exception {
         if (buttonA.getText().equals(quiz.getQuestion().getCorrectAnswer())) {
-            score++;
+            ((TestQuiz) (quiz)).incrementScore(1);
         }
         next();
     }
 
     public void checkB() throws Exception {
         if (buttonB.getText().equals(quiz.getQuestion().getCorrectAnswer())) {
-            score++;
+            ((TestQuiz) (quiz)).incrementScore(1);
         }
         next();
     }
 
     public void checkC() throws Exception {
         if (buttonC.getText().equals(quiz.getQuestion().getCorrectAnswer())) {
-            score++;
+            ((TestQuiz) (quiz)).incrementScore(1);
         }
         next();
     }
 
     public void checkD() throws Exception {
         if (buttonD.getText().equals(quiz.getQuestion().getCorrectAnswer())) {
-            score++;
+            ((TestQuiz) (quiz)).incrementScore(1);
         }
         next();
     }

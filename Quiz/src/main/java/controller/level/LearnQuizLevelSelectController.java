@@ -1,5 +1,7 @@
-package controller.learn;
+package controller.level;
 
+import controller.question.LearnClosedQuestionController;
+import controller.question.LearnOpenQuestionController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,9 +36,9 @@ public class LearnQuizLevelSelectController {
 
         LearnQuiz learnQuiz = new LearnQuiz(dictionary);
         if (learnQuiz.getQuestion() instanceof OpenedQuestion) {
-            new OpenedQuestionQuizController(learnQuiz);
+            new LearnOpenQuestionController(learnQuiz);
         } else {
-            new ClosedQuestionQuizController(learnQuiz);
+            new LearnClosedQuestionController(learnQuiz);
         }
     }
 

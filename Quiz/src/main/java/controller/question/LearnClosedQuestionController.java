@@ -1,6 +1,5 @@
-package controller.learn;
+package controller.question;
 
-import controller.question.QuestionController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,26 +13,27 @@ import model.quiz.Quiz;
 
 import java.io.IOException;
 
-public class ClosedQuestionQuizController extends QuestionController {
+public class LearnClosedQuestionController extends QuestionController {
 
     @FXML
     public Button buttonA, buttonB, buttonC, buttonD;
     public Label respondLabel;
 
-    public ClosedQuestionQuizController(Quiz quiz) throws IOException {
+    public LearnClosedQuestionController(Quiz quiz) throws IOException {
         this.quiz = quiz;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LearnQuiz/ClosedQuestionQuizView.fxml"));
         loader.setController(this);
         this.window = Main.window;
         this.window.setScene(new Scene(loader.load()));
-        this.window.setTitle("Nauka słówek - pytania zamknięte");
+        this.window.setTitle("Nauka słówek - pytanie zamknięte");
         this.window.show();
     }
 
     @FXML
     @Override
     public void initialize() {
+        super.initialize();
         String[] answerArray = ((ClosedQuestion) this.quiz.getQuestion()).toAnswerArray();
 
         buttonA.setText(answerArray[0]);

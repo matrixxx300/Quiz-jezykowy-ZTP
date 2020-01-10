@@ -3,11 +3,7 @@ package model.ranking;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
-import model.ranking.Sorting;
-import model.ranking.SortingByLevel;
-import model.ranking.SortingByPoints;
 
-// TODO: Rozdzielić tę klasę na model i kontroler, w celu spełnienia wzorca MVC.
 public class Ranking {
     public ObservableList<String> rankingList;
     private Sorting sorting;
