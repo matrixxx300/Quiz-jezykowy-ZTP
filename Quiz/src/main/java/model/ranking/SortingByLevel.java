@@ -3,7 +3,6 @@ package model.ranking;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-//TODO: Przenieść do modeli, w celu spełnienia wzorca MVC.
 public class SortingByLevel implements Sorting {
 
     @Override

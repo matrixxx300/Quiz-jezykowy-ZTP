@@ -1,5 +1,7 @@
-package controller.test;
+package controller.level;
 
+import controller.question.TestClosedQestionController;
+import controller.question.TestOpenQuestionController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,24 +15,25 @@ import model.Level;
 import model.question.OpenedQuestion;
 import model.quiz.TestQuiz;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.io.IOException;
 
 public class TestQuizLevelSelectController {
     public Stage window;
     private String selectedLevel;
     private Dictionary dictionary;
 
-    //todo: Przerobić ze statycznych na zwykłe prywantne! Dr Bołdak byłby zawiedziony, gdyby to zobaczył...
-    static int count, score;
-    static Set<String> questionsSet;
+    public TestQuizLevelSelectController() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TestQuiz/TestQuizLevelSelectView.fxml"));
+        loader.setController(this);
+        this.window = Main.window;
+        this.window.setScene(new Scene(loader.load()));
+        this.window.setTitle("Wybór poziomu testu");
+        this.window.show();
+    }
 
     @FXML
     public void initialize() {
         this.window = Main.window;
-        count = 0;
-        score = 0;
-        questionsSet = new HashSet<>();
         selectedLevel = null;
     }
 
@@ -44,9 +47,9 @@ public class TestQuizLevelSelectController {
 
         TestQuiz testQuiz = new TestQuiz(dictionary);
         if (testQuiz.getQuestion() instanceof OpenedQuestion) {
-            new OpenedQuestionQuizController(testQuiz);
+            new TestOpenQuestionController(testQuiz);
         } else {
-            new ClosedQuestionQuizController(testQuiz);
+            new TestClosedQestionController(testQuiz);
         }
     }
 

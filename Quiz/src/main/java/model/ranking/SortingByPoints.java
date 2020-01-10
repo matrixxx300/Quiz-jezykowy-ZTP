@@ -3,7 +3,6 @@ package model.ranking;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-//TODO: Przenieść do modeli, w celu spełnienia wzorca MVC.
 public class SortingByPoints implements Sorting {
     @Override
     public void sort(Ranking ranking) {

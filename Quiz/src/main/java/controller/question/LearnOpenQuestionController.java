@@ -1,6 +1,5 @@
-package controller.learn;
+package controller.question;
 
-import controller.question.QuestionController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,13 +11,13 @@ import model.quiz.Quiz;
 
 import java.io.IOException;
 
-public class OpenedQuestionQuizController extends QuestionController {
+public class LearnOpenQuestionController extends QuestionController {
 
     @FXML
     public TextField answerTextField;
     public Label respondLabel;
 
-    public OpenedQuestionQuizController(Quiz quiz) throws IOException {
+    public LearnOpenQuestionController(Quiz quiz) throws IOException {
         this.quiz = quiz;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LearnQuiz/OpenedQuestionQuizView.fxml"));
