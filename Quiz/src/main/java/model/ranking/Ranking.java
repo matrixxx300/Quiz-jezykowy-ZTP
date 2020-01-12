@@ -3,52 +3,38 @@ package model.ranking;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
+import main.MainLauncher;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class Ranking {
     public ObservableList<String> rankingList;
+    public String[] levels = new String[6];
+    public int[] scores = new int[6];
     private Sorting sorting;
 
-    public Ranking() {
-        rankingList = FXCollections.observableArrayList(
-                "C1 - 98/100", "B1 - 85/100", "A1 - 70/100", "B2 - 50/100", "A2 - 42/100", "C2 - 13/100");
-        setSortingByPoints();
-    }
+    public Ranking() throws FileNotFoundException {
+        File plik = new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource("ranking")).getFile());
+        Scanner odczyt = new Scanner(plik);
 
-    //używana po zakończeniu testu, sprawdza czy wynik otrzymany jest wyższy niż wynik w rankingu
-    public void updateScore(int score, String level) {
-        String compareLevel;
-        int compareScore;
-        int index = 0;
+        rankingList = FXCollections.observableArrayList();
 
-        for (int i = 0; i < rankingList.size(); i++) {
-            compareLevel = rankingList.get(i);
-            if (level.compareTo(compareLevel.charAt(0) + "" + compareLevel.charAt(1)) == 0) {
-                index = i;
+        System.out.println(plik);
+        for(int i=0; i<6;i++){
+            if(odczyt.hasNextLine()) {
+                levels[i] = odczyt.nextLine();
+                scores[i] = Integer.parseInt(odczyt.nextLine());
+                String zdanie = levels[i] + " - " + scores[i] + "/10";
+                rankingList.add(zdanie);
             }
         }
 
-        compareLevel = rankingList.get(index);
-        compareLevel = compareLevel.charAt(5) + "" + compareLevel.charAt(6);
-        compareScore = Integer.parseInt(compareLevel);
+        setSortingByLevel();
 
-        if (level.equals("A1") && score > compareScore) {
-            rankingList.set(index, "A1 - " + score + "/100");
-        }
-        if (level.equals("A2") && score > compareScore) {
-            rankingList.set(index, "A2 - " + score + "/100");
-        }
-        if (level.equals("B1") && score > compareScore) {
-            rankingList.set(index, "B1 - " + score + "/100");
-        }
-        if (level.equals("B2") && score > compareScore) {
-            rankingList.set(index, "B2 - " + score + "/100");
-        }
-        if (level.equals("C1") && score > compareScore) {
-            rankingList.set(index, "C1 - " + score + "/100");
-        }
-        if (level.equals("C2") && score > compareScore) {
-            rankingList.set(index, "C2 - " + score + "/100");
-        }
+        odczyt.close();
     }
 
     public void setList(ListView list) {
@@ -60,7 +46,7 @@ public class Ranking {
         sorting.sort(this);
     }
 
-    public void setSortingByPoints() {
+    public void setSortingByPoints(){
         sorting = new SortingByPoints();
         sorting.sort(this);
     }

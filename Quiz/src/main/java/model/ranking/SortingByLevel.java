@@ -1,36 +1,29 @@
 package model.ranking;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 public class SortingByLevel implements Sorting {
 
     @Override
     public void sort(Ranking ranking) {
-        ObservableList<String> rankingHelpList = FXCollections.observableArrayList("", "", "", "", "", "");
-        String help;
+        String[] level = ranking.levels;
+        int x;
 
-        for (String s : ranking.rankingList) {
-            help = s;
-            if (help.charAt(0) == 'A' && help.charAt(1) == '1') {
-                rankingHelpList.set(0, help);
-            }
-            if (help.charAt(0) == 'A' && help.charAt(1) == '2') {
-                rankingHelpList.set(1, help);
-            }
-            if (help.charAt(0) == 'B' && help.charAt(1) == '1') {
-                rankingHelpList.set(2, help);
-            }
-            if (help.charAt(0) == 'B' && help.charAt(1) == '2') {
-                rankingHelpList.set(3, help);
-            }
-            if (help.charAt(0) == 'C' && help.charAt(1) == '1') {
-                rankingHelpList.set(4, help);
-            }
-            if (help.charAt(0) == 'C' && help.charAt(1) == '2') {
-                rankingHelpList.set(5, help);
+        for (int i = 0; i < level.length; i++) {
+            String help;
+            for (int j = 0; j < level.length; j++) {
+                if (level[j].compareTo(level[i]) > 0) {
+                    help = level[i];
+                    level[i] = level[j];
+                    level[j] = help;
+
+                    x = ranking.scores[i];
+                    ranking.scores[i] = ranking.scores[j];
+                    ranking.scores[j] = x;
+
+                    help = ranking.rankingList.get(i);
+                    ranking.rankingList.set(i, ranking.rankingList.get(j));
+                    ranking.rankingList.set(j,help);
+                }
             }
         }
-        ranking.rankingList = rankingHelpList;
     }
 }

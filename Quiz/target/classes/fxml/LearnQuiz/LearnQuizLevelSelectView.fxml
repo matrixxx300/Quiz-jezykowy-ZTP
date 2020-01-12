@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Text?>
 <Pane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0"
       xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="controller.learn.LearnQuizLevelSelectController">
+      fx:controller="controller.level.LearnQuizLevelSelectController">
     <Text layoutX="277.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wybierz poziom zaawansowania">
         <font>
             <Font size="18.0"/>

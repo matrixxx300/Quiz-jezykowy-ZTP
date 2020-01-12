@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import main.Main;
 import model.ranking.Ranking;
 
+import java.io.FileNotFoundException;
+
 public class RankingController {
     private Stage window;
     private Ranking rankingModel;
@@ -18,7 +20,7 @@ public class RankingController {
     private ListView list;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws FileNotFoundException {
         this.rankingModel = new Ranking();
         this.window = Main.window;
 
@@ -31,12 +33,12 @@ public class RankingController {
         window.show();
     }
 
-    public void sortByPoints(ActionEvent actionEvent) {
+    public void sortByPoints(ActionEvent actionEvent) throws FileNotFoundException {
         rankingModel.setSortingByPoints();
         rankingModel.setList(list);
     }
 
-    public void sortByLevels(ActionEvent actionEvent) {
+    public void sortByLevels(ActionEvent actionEvent) throws FileNotFoundException {
         rankingModel.setSortingByLevel();
         rankingModel.setList(list);
     }

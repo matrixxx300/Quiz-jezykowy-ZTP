@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import main.Main;
 import model.quiz.TestQuiz;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class EndTestQuizController {
@@ -24,12 +25,13 @@ public class EndTestQuizController {
         loader.setController(this);
         this.window = Main.window;
         this.window.setScene(new Scene(loader.load()));
+        testQuiz.updateScore();
         this.window.setTitle("Wyniki testu");
         this.window.show();
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws FileNotFoundException {
         this.window = Main.window;
         this.scoreLabel.setText(testQuiz.getScore() + "/" + (testQuiz.getQuestions().size()));
     }
