@@ -17,7 +17,7 @@ public class Progress {
         };
     }
 
-    public Progress getInstance() {
+    public static Progress getInstance() {
         return Progress.instance;
     }
 

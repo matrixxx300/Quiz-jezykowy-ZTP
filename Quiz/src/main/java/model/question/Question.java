@@ -18,5 +18,9 @@ public abstract class Question {
     public String getCorrectAnswer() {
         return correctAnswer.getAppropriateWord(englishToPolish);
     }
+
+    public Word getCorrectWord() {
+        return correctAnswer;
+    }
 }
 
