@@ -3,11 +3,11 @@ package controller.question;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import main.Main;
+import model.Progress;
 import model.question.ClosedQuestion;
 import model.quiz.Quiz;
 
@@ -19,14 +19,14 @@ public class LearnClosedQuestionController extends QuestionController {
     public Button buttonA, buttonB, buttonC, buttonD;
     public Label respondLabel;
 
-    public LearnClosedQuestionController(Quiz quiz) throws IOException {
+    public LearnClosedQuestionController(Quiz quiz, Progress progress) throws IOException {
         this.quiz = quiz;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LearnQuiz/ClosedQuestionQuizView.fxml"));
         loader.setController(this);
         this.window = Main.window;
         this.window.setScene(new Scene(loader.load()));
-        this.window.setTitle("Nauka słówek - pytanie zamknięte");
+        this.window.setTitle("Nauka słówek " + quiz.getDictionary().getLevel().getName() + " - pytanie zamknięte");
         this.window.show();
     }
 
@@ -42,35 +42,14 @@ public class LearnClosedQuestionController extends QuestionController {
         buttonD.setText(answerArray[3]);
     }
 
+    public void checkAnswer(ActionEvent actionEvent) {
+        if (((Button) actionEvent.getSource()).getText().equals(quiz.getQuestion().getCorrectAnswer())) {
+            respondLabel.setText("Poprawna odpowiedź");
+            progress.updateProgressLevel(quiz.getDictionary().getLevel(), quiz.getQuestion().getCorrectWord(), +1);
+        } else {
+            respondLabel.setText("Błędna odpowiedź");
+            progress.updateProgressLevel(quiz.getDictionary().getLevel(), quiz.getQuestion().getCorrectWord(), -2);
+        }
 
-
-    public void checkA(ActionEvent actionEvent) {
-        if (buttonA.getText().equals(quiz.getQuestion().getCorrectAnswer())) {
-            respondLabel.setText("Dobrze!");
-        } else respondLabel.setText("Źle!");
-    }
-
-    public void checkB(ActionEvent actionEvent) {
-        if (buttonB.getText().equals(quiz.getQuestion().getCorrectAnswer())) {
-            respondLabel.setText("Dobrze!");
-        } else respondLabel.setText("Źle!");
-    }
-
-    public void checkC(ActionEvent actionEvent) {
-        if (buttonC.getText().equals(quiz.getQuestion().getCorrectAnswer())) {
-            respondLabel.setText("Dobrze!");
-        } else respondLabel.setText("Źle!");
-    }
-
-    public void checkD(ActionEvent actionEvent) {
-        if (buttonD.getText().equals(quiz.getQuestion().getCorrectAnswer())) {
-            respondLabel.setText("Dobrze!");
-        } else respondLabel.setText("Źle!");
-    }
-
-    public void back(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/QuizSelectView.fxml"));
-        window.setScene(new Scene(root));
-        window.show();
     }
 }

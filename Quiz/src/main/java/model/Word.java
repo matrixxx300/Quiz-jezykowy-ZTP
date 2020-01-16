@@ -20,4 +20,5 @@ public class Word {
         this.englishWord = englishWord;
         this.polishWord = polishWord;
     }
+
 }

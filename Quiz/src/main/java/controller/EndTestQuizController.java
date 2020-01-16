@@ -2,14 +2,12 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import main.Main;
 import model.quiz.TestQuiz;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class EndTestQuizController {
@@ -31,14 +29,12 @@ public class EndTestQuizController {
     }
 
     @FXML
-    public void initialize() throws FileNotFoundException {
+    public void initialize() {
         this.window = Main.window;
         this.scoreLabel.setText(testQuiz.getScore() + "/" + (testQuiz.getQuestions().size()));
     }
 
     public void back() throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/QuizSelectView.fxml"));
-        window.setScene(new Scene(root));
-        window.show();
+        new QuizSelectController();
     }
 }

@@ -22,10 +22,10 @@ public class TestClosedQestionController extends QuestionController {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TestQuiz/ClosedQuestionQuizView.fxml"));
         loader.setController(this);
-        this.window = Main.window;
-        this.window.setScene(new Scene(loader.load()));
-        this.window.setTitle("Test zamknięty");
-        this.window.show();
+        window = Main.window;
+        window.setScene(new Scene(loader.load()));
+        window.setTitle("Test " + quiz.getDictionary().getLevel().getName() + " - pytanie zamknięte");
+        window.show();
     }
 
     @FXML

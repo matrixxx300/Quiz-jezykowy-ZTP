@@ -23,9 +23,7 @@ public class MenuController {
     }
 
     public void quizSelect(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/QuizSelectView.fxml"));
-        window.setScene(new Scene(root));
-        window.show();
+        new QuizSelectController();
     }
 
     public void ranking(ActionEvent actionEvent) throws Exception {

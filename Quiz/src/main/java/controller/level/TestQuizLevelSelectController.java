@@ -1,11 +1,11 @@
 package controller.level;
 
+import controller.QuizSelectController;
 import controller.question.TestClosedQestionController;
 import controller.question.TestOpenQuestionController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -54,8 +54,6 @@ public class TestQuizLevelSelectController {
     }
 
     public void back() throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/QuizSelectView.fxml"));
-        window.setScene(new Scene(root));
-        window.show();
+        new QuizSelectController();
     }
 }

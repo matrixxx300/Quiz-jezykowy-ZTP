@@ -13,13 +13,13 @@
         </font>
     </Text>
     <Button fx:id="buttonA" layoutX="40.0" layoutY="140.0" mnemonicParsing="false" prefHeight="40.0"
-            prefWidth="150.0" onAction="#checkA" text="A."/>
+            prefWidth="150.0" onAction="#checkAnswer" text="A."/>
     <Button fx:id="buttonB" layoutX="230.0" layoutY="140.0" mnemonicParsing="false" prefHeight="40.0"
-            prefWidth="150.0" onAction="#checkB" text="B."/>
+            prefWidth="150.0" onAction="#checkAnswer" text="B."/>
     <Button fx:id="buttonC" layoutX="420.0" layoutY="140.0" mnemonicParsing="false" prefHeight="40.0"
-            prefWidth="150.0" onAction="#checkC" text="C."/>
+            prefWidth="150.0" onAction="#checkAnswer" text="C."/>
     <Button fx:id="buttonD" layoutX="610.0" layoutY="140.0" mnemonicParsing="false" prefHeight="40.0"
-            prefWidth="150.0" onAction="#checkD" text="D."/>
+            prefWidth="150.0" onAction="#checkAnswer" text="D."/>
     <Label fx:id="respondLabel" layoutX="254.0" layoutY="247.0" prefHeight="40.0" prefWidth="292.0"
            textAlignment="CENTER"/>
     <Button layoutX="14.0" layoutY="559.0" mnemonicParsing="false" onAction="#back"

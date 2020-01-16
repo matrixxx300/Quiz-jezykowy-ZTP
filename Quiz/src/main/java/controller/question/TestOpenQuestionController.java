@@ -1,9 +1,9 @@
 package controller.question;
 
 import controller.EndTestQuizController;
+import controller.QuizSelectController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import main.Main;
@@ -24,7 +24,7 @@ public class TestOpenQuestionController extends QuestionController {
         loader.setController(this);
         this.window = Main.window;
         this.window.setScene(new Scene(loader.load()));
-        this.window.setTitle("Test otwarty");
+        this.window.setTitle("Test " + quiz.getDictionary().getLevel().getName() + " - pytanie otwarte");
         this.window.show();
     }
 
@@ -41,8 +41,6 @@ public class TestOpenQuestionController extends QuestionController {
     }
 
     public void back() throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/QuizSelectView.fxml"));
-        window.setScene(new Scene(root));
-        window.show();
+        new QuizSelectController();
     }
 }

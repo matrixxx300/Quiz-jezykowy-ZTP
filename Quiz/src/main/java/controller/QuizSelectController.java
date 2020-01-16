@@ -1,13 +1,15 @@
 package controller;
 
+import controller.level.LearnQuizLevelSelectController;
 import controller.level.TestQuizLevelSelectController;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import main.Main;
+
+import java.io.IOException;
 
 public class QuizSelectController {
     public Stage window;
@@ -16,9 +18,13 @@ public class QuizSelectController {
     public Button learningButton;
     public Button testButton;
 
-    @FXML
-    public void initialize() {
-        this.window = Main.window;
+    public QuizSelectController() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/QuizSelectView.fxml"));
+        loader.setController(this);
+        window = Main.window;
+        window.setScene(new Scene(loader.load()));
+        window.setTitle("Wybór rodzaju quizu");
+        window.show();
     }
 
     public void back() throws Exception {
@@ -28,9 +34,7 @@ public class QuizSelectController {
     }
 
     public void learnQuizLevelSelect() throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/LearnQuiz/LearnQuizLevelSelectView.fxml"));
-        window.setScene(new Scene(root));
-        window.show();
+        new LearnQuizLevelSelectController();
     }
 
     public void testQuizLevelSelect() throws Exception {
