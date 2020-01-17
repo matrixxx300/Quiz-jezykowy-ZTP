@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import main.Main;
-import model.Progress;
 import model.quiz.Quiz;
 
 import java.io.IOException;
@@ -16,9 +15,9 @@ public class LearnOpenQuestionController extends QuestionController {
     public TextField answerTextField;
     public Label respondLabel;
 
-    public LearnOpenQuestionController(Quiz quiz, Progress progress) throws IOException {
+    public LearnOpenQuestionController(Quiz quiz) throws IOException {
+        super();
         this.quiz = quiz;
-        this.progress = progress;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LearnQuiz/OpenedQuestionQuizView.fxml"));
         loader.setController(this);

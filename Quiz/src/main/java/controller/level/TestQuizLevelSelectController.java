@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import main.Main;
 import model.Dictionary;
-import model.Level;
+import model.progress.Level;
 import model.question.OpenedQuestion;
 import model.quiz.TestQuiz;
 

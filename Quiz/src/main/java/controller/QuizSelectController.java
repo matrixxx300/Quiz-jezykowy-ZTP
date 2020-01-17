@@ -3,7 +3,6 @@ package controller;
 import controller.level.LearnQuizLevelSelectController;
 import controller.level.TestQuizLevelSelectController;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -28,9 +27,7 @@ public class QuizSelectController {
     }
 
     public void back() throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MenuView.fxml"));
-        window.setScene(new Scene(root));
-        window.show();
+        new MenuController();
     }
 
     public void learnQuizLevelSelect() throws Exception {

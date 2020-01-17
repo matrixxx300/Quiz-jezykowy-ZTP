@@ -1,6 +1,7 @@
 package model;
 
 import main.MainLauncher;
+import model.progress.Level;
 
 import java.io.File;
 import java.io.FileNotFoundException;
