@@ -12,16 +12,21 @@ public class Dictionary implements Iterable {
     private Level level;
     private List<Word> wordList;
 
-    public Dictionary(Level level) throws FileNotFoundException {
+    public Dictionary(Level level)  {
         this.level = level;
 
-        Scanner scanner = new Scanner(
-                new FileReader(
-                        new File(
-                                Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource(level.getName() + "dictionary")).getFile()
-                        )
-                )
-        );
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(
+                    new FileReader(
+                            new File(
+                                    Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource(level.getName() + "dictionary")).getFile()
+                            )
+                    )
+            );
+        } catch (FileNotFoundException e) {
+            //todo obsłużyć wyjątek
+        }
         wordList = new LinkedList<>();
         String line;
 

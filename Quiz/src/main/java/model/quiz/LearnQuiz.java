@@ -1,14 +1,16 @@
 package model.quiz;
 
 import model.Dictionary;
-import model.Word;
+import model.builder.LearnQuizBuilder;
+import model.progress.Progress;
 
 public class LearnQuiz extends Quiz {
-    public LearnQuiz(Dictionary dictionary) {
+    public LearnQuiz(Dictionary dictionary, int questionsCount) {
         super(dictionary);
-    }
-
-    public Word getCorrectWord(){
-        return question.getCorrectWord();
+        LearnQuizBuilder learnQuizBuilder = new LearnQuizBuilder(this.dictionary, Progress.getInstance());
+        for (int i = 0; i < questionsCount; i++) {
+            learnQuizBuilder.createQuestion();
+        }
+        this.questions = learnQuizBuilder.getQuestions();
     }
 }

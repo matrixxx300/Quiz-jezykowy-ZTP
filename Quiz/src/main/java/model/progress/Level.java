@@ -3,6 +3,7 @@ package model.progress;
 import model.Word;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class Level {
     String name;
@@ -10,7 +11,7 @@ public class Level {
 
     public Level(String name) {
         this.name = name;
-        map = new HashMap<>();
+        map = new LinkedHashMap<>();
     }
 
     public String getName() {
@@ -21,7 +22,7 @@ public class Level {
         return map;
     }
 
-    public void setMap(HashMap<Word, Integer> map) {
+    public void setMap(LinkedHashMap<Word, Integer> map) {
         this.map = map;
     }
 

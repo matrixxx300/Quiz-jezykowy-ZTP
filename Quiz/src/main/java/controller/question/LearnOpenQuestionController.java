@@ -28,12 +28,12 @@ public class LearnOpenQuestionController extends QuestionController {
     }
 
     public void check() {
-        if (answerTextField.getText().equals(quiz.getQuestion().getCorrectAnswer())) {
+        if (answerTextField.getText().equals(quiz.getCurrentQuestion().getCorrectAnswer())) {
             respondLabel.setText("Poprawna odpowiedź");
-            progress.updateProgressLevel(quiz.getDictionary().getLevel(), quiz.getQuestion().getCorrectWord(), +2);
+            progress.updateProgressLevel(quiz.getDictionary().getLevel(), quiz.getCurrentQuestion().getCorrectWord(), +2);
         } else {
             respondLabel.setText("Błędna odpowiedź");
-            progress.updateProgressLevel(quiz.getDictionary().getLevel(), quiz.getQuestion().getCorrectWord(), -1);
+            progress.updateProgressLevel(quiz.getDictionary().getLevel(), quiz.getCurrentQuestion().getCorrectWord(), -1);
         }
     }
 }
