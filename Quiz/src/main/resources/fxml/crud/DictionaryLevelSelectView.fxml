@@ -4,25 +4,26 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0"
-      prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.999-ea">
+<Pane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0"
+      xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.crud.DictionaryLevelSelectController">
     <Text layoutX="277.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wybierz poziom zaawansowania">
         <font>
             <Font size="18.0"/>
         </font>
     </Text>
     <Button layoutX="380.0" layoutY="100.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
-            onAction="#startLearnQuiz" text="A1"/>
+            onAction="#dictionaryCrud" text="A1"/>
     <Button layoutX="380.0" layoutY="150.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
-            onAction="#startLearnQuiz" text="A2"/>
+            onAction="#dictionaryCrud" text="A2"/>
     <Button layoutX="380.0" layoutY="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
-            onAction="#startLearnQuiz" text="B1"/>
+            onAction="#dictionaryCrud" text="B1"/>
     <Button layoutX="380.0" layoutY="250.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
-            onAction="#startLearnQuiz" text="B2"/>
+            onAction="#dictionaryCrud" text="B2"/>
     <Button layoutX="380.0" layoutY="300.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
-            onAction="#startLearnQuiz" text="C1"/>
+            onAction="#dictionaryCrud" text="C1"/>
     <Button layoutX="380.0" layoutY="350.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0"
-            onAction="#startLearnQuiz" text="C2"/>
-    <Button layoutX="350.0" layoutY="500.0" mnemonicParsing="false" onAction="#back"
-            prefWidth="100.0" text="Powrót"/>
+            onAction="#dictionaryCrud" text="C2"/>
+    <Button layoutX="350.0" layoutY="536.0" mnemonicParsing="false" onAction="#back"
+            prefHeight="30.0" prefWidth="100.0" text="Powrót"/>
 </Pane>

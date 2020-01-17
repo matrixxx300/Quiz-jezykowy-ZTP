@@ -23,6 +23,14 @@ public class Word {
 
     @Override
     public String toString() {
-        return englishWord + "=" + polishWord;
+        return englishWord + " = " + polishWord;
+    }
+
+    public void setEnglishWord(String englishWord) {
+        this.englishWord = englishWord;
+    }
+
+    public void setPolishWord(String polishWord) {
+        this.polishWord = polishWord;
     }
 }

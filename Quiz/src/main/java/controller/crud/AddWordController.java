@@ -16,6 +16,7 @@ import model.Word;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Objects;
 
 public class AddWordController {
@@ -26,30 +27,28 @@ public class AddWordController {
     public TextField polishTextField, englishTextField;
     public Label resultLabel;
 
-    public AddWordController(DictionaryController dictionaryController) throws IOException {
-        this.dictionary = dictionaryController.getDictionary();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/crud/AddWordView.fxml"));
-        loader.setController(this);
-
-        this.window = Main.window;
-        this.window.setScene(new Scene(loader.load()));
-        this.window.setTitle("Dodawanie słowa");
-        this.window.show();
-    }
-
     @FXML
     public void initialize() {
+        this.window = Main.window;
     }
 
     public void addWord(ActionEvent actionEvent) throws IOException {
-        Word wordToAdd = new Word(englishTextField.getText(), polishTextField.getText());
-        if (dictionary.getWordList().contains(wordToAdd)) {
-            resultLabel.setText("Dane słowo już jest w słowniku!");
-        } else if (polishTextField.getText().equals("") || englishTextField.getText().equals("")) {
+        String polishWord = polishTextField.getText();
+        String englishWord = englishTextField.getText();
+        Iterator<Word> it = dictionary.iterator();
+        Word word;
+        while (it.hasNext()) {
+            word = it.next();
+            if(word.getPolishWord().equals(polishWord) && word.getEnglishWord().equals(englishWord)){
+                resultLabel.setText("Dane słowo już jest w słowniku!");
+                return;
+            }
+        }
+        if (polishTextField.getText().equals("") || englishTextField.getText().equals("")) {
             resultLabel.setText("Pola nie mogą być puste!");
         } else {
             FileWriter writer = new FileWriter(new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource(dictionary.getLevel().getName() + "dictionary")).getFile()), true);
-            writer.write(polishTextField.getText() + "=" + englishTextField.getText() + "\n");
+            writer.write(englishTextField.getText() + "=" + polishTextField.getText() + "\n");
             resultLabel.setText("Dodano słowo.");
             writer.close();
             dictionary = new Dictionary(dictionary.getLevel());
@@ -59,6 +58,11 @@ public class AddWordController {
     public void back(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/crud/DictionaryView.fxml"));
         window.setScene(new Scene(root));
+        window.setTitle("Menu słownika");
         window.show();
+    }
+
+    public void setDictionary(Dictionary dictionary) {
+        this.dictionary = dictionary;
     }
 }
