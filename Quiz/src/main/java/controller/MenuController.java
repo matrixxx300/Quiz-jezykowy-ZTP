@@ -38,8 +38,9 @@ public class MenuController {
     }
 
     public void dictionary(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/crud/DictionaryView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/crud/DictionaryLevelSelectView.fxml"));
         window.setScene(new Scene(root));
+        window.setTitle("Wybierz poziom zaawansowania");
         window.show();
     }
 
