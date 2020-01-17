@@ -2,6 +2,7 @@ package model;
 
 public class Word {
     private String englishWord;
+
     private String polishWord;
 
     public String getEnglishWord() {
@@ -18,6 +19,14 @@ public class Word {
 
     public Word(String englishWord, String polishWord) {
         this.englishWord = englishWord;
+        this.polishWord = polishWord;
+    }
+
+    public void setEnglishWord(String englishWord) {
+        this.englishWord = englishWord;
+    }
+
+    public void setPolishWord(String polishWord) {
         this.polishWord = polishWord;
     }
 }

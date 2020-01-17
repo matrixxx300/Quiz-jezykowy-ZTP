@@ -23,22 +23,39 @@ public class RemoveWordController {
     private Dictionary dictionary;
 
     @FXML
-    public TextField polishTextField, englishTextField;
+    public TextField wordTextField;
     public Label resultLabel;
-
-    public RemoveWordController(DictionaryController dictionaryController) throws IOException {
-        this.dictionary = dictionaryController.getDictionary();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/crud/RemoveWordView.fxml"));
-        loader.setController(this);
-
-        this.window = Main.window;
-        window.setScene(new Scene(loader.load()));
-        window.setTitle("Usuwanie słowa");
-        window.show();
-    }
 
     @FXML
     public void initialize() {
+        this.window = Main.window;
+    }
+
+    public void removeWord(ActionEvent actionEvent) throws IOException {
+        String word = wordTextField.getText();
+
+        if (wordTextField.getText().equals("")) {
+            resultLabel.setText("Pole nie moze być puste!");
+            return;
+        }
+        for (int i = 0; i < dictionary.getWordList().size(); i++) {
+            if (dictionary.getWordList().get(i).getPolishWord().equals(word) || dictionary.getWordList().get(i).getEnglishWord().equals(word)) {
+                resultLabel.setText("Usunięto słowo.");
+                dictionary.getWordList().remove(i);
+                saveDictionary();
+                return;
+            }
+        }
+        resultLabel.setText("Nie znaleziono słowa.");
+    }
+
+    private void saveDictionary() throws IOException {
+        FileWriter writer = new FileWriter(new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource(dictionary.getLevel().getName() + "dictionary")).getFile()), false);
+        for (int i = 0; i < dictionary.getWordList().size(); i++) {
+            writer.write(dictionary.getWordList().get(i).getEnglishWord() + " = " + dictionary.getWordList().get(i).getPolishWord() + "\n");
+        }
+        writer.close();
+        dictionary = new Dictionary(dictionary.getLevel());
     }
 
     public void back(ActionEvent actionEvent) throws Exception {
@@ -47,19 +64,8 @@ public class RemoveWordController {
         window.show();
     }
 
-    public void removeWord(ActionEvent actionEvent) throws IOException {
-        Word wordToAdd = new Word(englishTextField.getText(), polishTextField.getText());
-        if (!dictionary.getWordList().contains(wordToAdd)) {
-            resultLabel.setText("Danego słowa nie ma w słowniku!");
-        } else if (polishTextField.getText().equals("") && englishTextField.getText().equals("")) {
-            resultLabel.setText("Pola nie mogą być puste!");
-        } else {
-            FileWriter writer = new FileWriter(new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource("dictionary")).getFile()), true);
-            //dictionary.get(polishTextField.getText());
-            //writer.write(polishTextField.getText() + "=" + englishTextField.getText() + "\n");
-            resultLabel.setText("Usunięto słowo.");
-            writer.close();
-            dictionary = new Dictionary(dictionary.getLevel());
-        }
+    public void setDictionary(Dictionary dictionary) {
+        this.dictionary = dictionary;
     }
 }
+

@@ -25,48 +25,51 @@ public class EditWordController {
     public TextField polishTextField, englishTextField;
     public Label resultLabel;
 
-    public EditWordController(DictionaryController dictionaryController) throws IOException {
-        this.dictionary = dictionaryController.getDictionary();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/crud/EditWordView.fxml"));
-        loader.setController(this);
-
-        this.window = Main.window;
-        window.setScene(new Scene(loader.load()));
-        window.setTitle("Edycja słowa");
-        window.show();
-    }
-
     @FXML
     public void initialize() {
+        this.window = Main.window;
     }
 
     public void editWord(ActionEvent actionEvent) throws IOException {
-        //TODO WSTAWIC ITERATOR
-//        if (!dictionary.getWordList().containsKey(polishTextField.getText())) {
-//            resultLabel.setText("Danego słowa nie ma w słowniku!");
-//        } else if (!dictionary.getWordList().containsValue(englishTextField.getText())) {
-//            resultLabel.setText("Danego słowa nie ma w słowniku!");
+        String polishWord = polishTextField.getText();
+        String englishWord = englishTextField.getText();
         if (polishTextField.getText().equals("") || englishTextField.getText().equals("")) {
             resultLabel.setText("Pola nie mogą być puste!");
-        } else {
-            FileWriter writer = new FileWriter(new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource("dictionary")).getFile()), true);
-            //TODO WSTAWIC ITERATOR
-//            if (dictionary.getWordList().containsKey(polishTextField.getText())){
-//                dictionary.getWordList().replace(polishTextField.getText(), englishTextField.getText());
-//            }else if (dictionary.getWordList().containsValue(englishTextField.getText())) {
-//                dictionary.getWordList().replace(polishTextField.getText(), englishTextField.getText());
-//            }
-//            writer.
-//            //writer.write(polishTextField.getText() + "=" + englishTextField.getText() + "\n");
-//            resultLabel.setText("Zedytowano słowo.");
-            writer.close();
-            dictionary = new Dictionary(dictionary.getLevel());
+            return;
         }
+        for (int i = 0; i < dictionary.getWordList().size(); i++) {
+            if (dictionary.getWordList().get(i).getPolishWord().equals(polishWord) || dictionary.getWordList().get(i).getEnglishWord().equals(englishWord)) {
+                resultLabel.setText("Dane słowa już istnieją.");
+                return;
+            } else if (dictionary.getWordList().get(i).getPolishWord().equals(polishWord) && !dictionary.getWordList().get(i).getEnglishWord().equals(englishWord)) {
+                dictionary.getWordList().get(i).setEnglishWord(englishWord);
+                resultLabel.setText("Zedytowano słowo.");
+                saveDictionary();
+                return;
+            } else if (dictionary.getWordList().get(i).getEnglishWord().equals(englishWord) && !dictionary.getWordList().get(i).getPolishWord().equals(polishWord)) {
+                resultLabel.setText("Zedytowano słowo.");
+                dictionary.getWordList().get(i).setPolishWord(polishWord);
+                saveDictionary();
+                return;
+            }
+        }
+        resultLabel.setText("Nie znaleziono słowa.");
+    }
+
+    private void saveDictionary() throws IOException {
+        FileWriter writer = new FileWriter(new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource(dictionary.getLevel().getName() + "dictionary")).getFile()), true);
+        writer.write(englishTextField.getText() + " = " + polishTextField.getText() + "\n");
+        writer.close();
+        dictionary = new Dictionary(dictionary.getLevel());
     }
 
     public void back(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/crud/DictionaryView.fxml"));
         window.setScene(new Scene(root));
         window.show();
+    }
+
+    public void setDictionary(Dictionary dictionary) {
+        this.dictionary = dictionary;
     }
 }

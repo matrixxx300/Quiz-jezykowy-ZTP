@@ -27,7 +27,7 @@ public class Dictionary {
         while (scanner.hasNext()) {
             line = scanner.nextLine();
             if (!line.startsWith("#") && !line.isEmpty()) {
-                String[] columns = line.split("=");
+                String[] columns = line.split(" = ");
                 wordList.add(new Word(columns[0], columns[1]));
             }
         }
