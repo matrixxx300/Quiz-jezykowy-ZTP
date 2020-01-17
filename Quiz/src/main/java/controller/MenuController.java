@@ -1,13 +1,14 @@
 package controller;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import main.Main;
+
+import java.io.IOException;
 
 public class MenuController {
     public Stage window;
@@ -17,9 +18,13 @@ public class MenuController {
     public Button dictionaryButton;
     public Button exitButton;
 
-    @FXML
-    public void initialize() {
-        this.window = Main.window;
+    public MenuController() throws IOException {
+        window = Main.window;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MenuView.fxml"));
+        loader.setController(this);
+        window.setTitle("Menu główne");
+        window.setScene(new Scene(loader.load()));
+        window.show();
     }
 
     public void quizSelect(ActionEvent actionEvent) throws Exception {

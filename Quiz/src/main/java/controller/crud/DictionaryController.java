@@ -1,10 +1,8 @@
 package controller.crud;
 
+import controller.MenuController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.Main;
 import model.Dictionary;
@@ -13,10 +11,13 @@ import model.progress.Level;
 import java.util.Map;
 
 public class DictionaryController {
+    public static Map<String, String> oldDict;
     public Stage window;
-
     private String selectedLevel = "A1"; //TODO: unhardcode
     private Dictionary dictionary;
+
+    public static void loadDictionary(String selectedLevel) {
+    }
 
     @FXML
     public void initialize() {
@@ -25,11 +26,6 @@ public class DictionaryController {
 
     public Dictionary getDictionary() {
         return dictionary;
-    }
-
-    public static Map<String, String> oldDict;
-
-    public static void loadDictionary(String selectedLevel) {
     }
 
     public void addWord(ActionEvent actionEvent) throws Exception {
@@ -48,8 +44,6 @@ public class DictionaryController {
     }
 
     public void back(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MenuView.fxml"));
-        window.setScene(new Scene(root));
-        window.show();
+        new MenuController();
     }
 }

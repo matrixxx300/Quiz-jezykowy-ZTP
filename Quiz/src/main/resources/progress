@@ -1,23 +1,23 @@
-A1
-A2
-roundabout = rondo:-2
-dinner = obiad:1
-cucumber = ogórek:1
-diving = skoki do wody:1
-rucksack = plecak:1
-bus stop = przystanek autobusowy:1
-inn = hotel:1
-winner = zwycięzca:1
-note = banknot:1
-B1
-B2
-C1
-divan = sofa:-2
-seismology = sejsmologia:-2
-extinct = wymarły:-2
-tank = czołg:1
-ornithology = ornitologia:1
-meteorology = meteorologia:1
-yak = jak:1
-bellows = miechy:1
-C2
+$ A1
+sheep=owca, owce:-1
+leg=noga:1
+water=woda:1
+to catch=łapać:1
+office worker=pracownik biurowy:1
+programmer=programista:1
+$ A2
+warm water=ciepła woda:-2
+corduroy=sztruks:-2
+cup=puchar:-2
+bowl=miska:-2
+random=przypadkowy:1
+to do homework=odrobić lekcje:1
+snowman=bałwan:1
+bedroom=sypialnia:2
+$ B1
+$ B2
+$ C1
+benchmark=test wydajności:-2
+saber=szabla:-2
+flannel shirt=koszula flanelowa:1
+$ C2

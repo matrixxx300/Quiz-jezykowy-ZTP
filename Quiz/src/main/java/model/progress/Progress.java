@@ -2,13 +2,10 @@ package model.progress;
 
 import model.Word;
 
-import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 public class Progress {
     private static final Progress instance = new Progress();
@@ -48,9 +45,9 @@ public class Progress {
     }
 
     public void saveProgress() throws IOException {
-        FileWriter writer = new FileWriter(new File("Quiz\\src\\main\\resources\\progress"));
+        FileWriter writer = new FileWriter("Quiz\\src\\main\\resources\\progress");
         for (Level level : levels) {
-            writer.write(level.name + "\n");
+            writer.write("$ " + level.name + "\n");
 
             HashSet entrySet = new HashSet<>(level.getMap().entrySet());
             ArrayList<Map.Entry<Word, Integer>> entryList = new ArrayList<>(entrySet);
@@ -61,5 +58,20 @@ public class Progress {
             }
         }
         writer.close();
+    }
+
+    public void loadProgress() throws IOException {
+        //todo sprawdzić, czy plik istnieje!
+        Scanner scanner = new Scanner(new FileReader("Quiz\\src\\main\\resources\\progress"));
+        while (scanner.hasNextLine()) {
+            String[] levelLine = scanner.nextLine().split(" ");
+            Level level = new Level(levelLine[1]);
+            while (scanner.hasNextLine() && !scanner.hasNext("\\$")) {
+                String line = scanner.nextLine();
+                String[] columns = line.split("[=:]");
+                levels[level.toInteger()].map.put(new Word(columns[0], columns[1]), Integer.parseInt(columns[2]));
+            }
+        }
+        scanner.close();
     }
 }
