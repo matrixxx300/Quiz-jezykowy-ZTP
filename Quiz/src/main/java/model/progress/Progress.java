@@ -46,10 +46,8 @@ public class Progress {
     }
 
     public void updateProgressLevel(Level level, Word word, int value) {
-        Integer val = levels[level.toInteger()].map.putIfAbsent(word, value);
-        if (val != null) {
-            level.map.replace(word, levels[level.toInteger()].map.get(word) + value);
-        }
+        int oldValue = levels[level.toInteger()].map.get(word);
+        levels[level.toInteger()].map.replace(word, oldValue + value);
     }
 
     public void resetLevelProgress(Level level) {
