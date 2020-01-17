@@ -1,6 +1,7 @@
 package controller.question;
 
 import controller.QuizSelectController;
+import controller.level.LearnQuizLevelSelectController;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -18,24 +19,31 @@ public class QuestionController {
     protected Quiz quiz;
     protected Progress progress;
 
-    public QuestionController(){
+    public QuestionController() {
         progress = Progress.getInstance();
     }
 
     @FXML
     public void initialize() {
-        questionText.setText(this.quiz.getQuestion().getQuestionText());
+
+        questionText.setText(quiz.getCurrentQuestion().getQuestionText());
     }
 
     public void next() throws Exception {
-        quiz.generateQuestion();
-        if (quiz instanceof LearnQuiz && quiz.getQuestion() instanceof ClosedQuestion)
+        quiz.nextQuestion();
+        if (quiz.getCurrentQuestionNumber() >= quiz.getQuestions().size()) {
+            progress.saveProgress();
+            new LearnQuizLevelSelectController();
+            return;
+        }
+
+        if (quiz instanceof LearnQuiz && quiz.getCurrentQuestion() instanceof ClosedQuestion)
             new LearnClosedQuestionController(quiz);
-        else if (quiz instanceof LearnQuiz && quiz.getQuestion() instanceof OpenedQuestion)
+        else if (quiz instanceof LearnQuiz && quiz.getCurrentQuestion() instanceof OpenedQuestion)
             new LearnOpenQuestionController(quiz);
-        else if (quiz instanceof TestQuiz && quiz.getQuestion() instanceof ClosedQuestion)
+        else if (quiz instanceof TestQuiz && quiz.getCurrentQuestion() instanceof ClosedQuestion)
             new TestClosedQestionController(quiz);
-        else if (quiz instanceof TestQuiz && quiz.getQuestion() instanceof OpenedQuestion)
+        else if (quiz instanceof TestQuiz && quiz.getCurrentQuestion() instanceof OpenedQuestion)
             new TestOpenQuestionController(quiz);
     }
 

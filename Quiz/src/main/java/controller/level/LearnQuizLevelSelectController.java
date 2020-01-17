@@ -42,8 +42,8 @@ public class LearnQuizLevelSelectController {
         this.selectedLevel = ((Button) actionEvent.getSource()).getText();
         this.dictionary = new Dictionary(new Level(this.selectedLevel));
 
-        LearnQuiz learnQuiz = new LearnQuiz(dictionary);
-        if (learnQuiz.getQuestion() instanceof OpenedQuestion) {
+        LearnQuiz learnQuiz = new LearnQuiz(dictionary, 2);
+        if (learnQuiz.getCurrentQuestion() instanceof OpenedQuestion) {
             new LearnOpenQuestionController(learnQuiz);
         } else {
             new LearnClosedQuestionController(learnQuiz);

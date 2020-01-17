@@ -32,7 +32,7 @@ public class TestClosedQestionController extends QuestionController {
     @Override
     public void initialize() {
         super.initialize();
-        String[] answerArray = ((ClosedQuestion) this.quiz.getQuestion()).toAnswerArray();
+        String[] answerArray = ((ClosedQuestion) this.quiz.getCurrentQuestion()).toAnswerArray();
 
         buttonA.setText(answerArray[0]);
         buttonB.setText(answerArray[1]);
@@ -50,28 +50,28 @@ public class TestClosedQestionController extends QuestionController {
     }
 
     public void checkA() throws Exception {
-        if (buttonA.getText().equals(quiz.getQuestion().getCorrectAnswer())) {
+        if (buttonA.getText().equals(quiz.getCurrentQuestion().getCorrectAnswer())) {
             ((TestQuiz) (quiz)).incrementScore(1);
         }
         next();
     }
 
     public void checkB() throws Exception {
-        if (buttonB.getText().equals(quiz.getQuestion().getCorrectAnswer())) {
+        if (buttonB.getText().equals(quiz.getCurrentQuestion().getCorrectAnswer())) {
             ((TestQuiz) (quiz)).incrementScore(1);
         }
         next();
     }
 
     public void checkC() throws Exception {
-        if (buttonC.getText().equals(quiz.getQuestion().getCorrectAnswer())) {
+        if (buttonC.getText().equals(quiz.getCurrentQuestion().getCorrectAnswer())) {
             ((TestQuiz) (quiz)).incrementScore(1);
         }
         next();
     }
 
     public void checkD() throws Exception {
-        if (buttonD.getText().equals(quiz.getQuestion().getCorrectAnswer())) {
+        if (buttonD.getText().equals(quiz.getCurrentQuestion().getCorrectAnswer())) {
             ((TestQuiz) (quiz)).incrementScore(1);
         }
         next();

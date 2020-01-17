@@ -30,7 +30,7 @@ public class TestOpenQuestionController extends QuestionController {
 
     @Override
     public void next() throws Exception {
-        if (answerTextField.getText().equals(quiz.getQuestion().getCorrectAnswer())) {
+        if (answerTextField.getText().equals(quiz.getCurrentQuestion().getCorrectAnswer())) {
             ((TestQuiz) (quiz)).incrementScore(1);
         }
         if (quiz.getQuestions().size() >= 10) {

@@ -1,5 +1,6 @@
 package model.progress;
 
+import model.Dictionary;
 import model.Word;
 
 import java.io.FileReader;
@@ -10,6 +11,7 @@ import java.util.*;
 public class Progress {
     private static final Progress instance = new Progress();
     Level[] levels;
+    int accessedWordNumber;
 
     private Progress() {
         levels = new Level[]{
@@ -20,6 +22,23 @@ public class Progress {
                 new Level("C1"),
                 new Level("C2")
         };
+        try {
+            loadProgress();
+        } catch (IOException e) {
+            for (Level level : levels) {
+                Dictionary dictionary = new Dictionary(level);
+                for (Word word : dictionary.getWordList()) {
+                    updateProgressLevel(level, word, 0);
+                }
+            }
+            try {
+                saveProgress();
+            } catch (IOException e2) {
+                //todo obsłużyć wyjątki
+            }
+        }
+
+        accessedWordNumber = 0;
     }
 
     public static Progress getInstance() {
@@ -27,15 +46,13 @@ public class Progress {
     }
 
     public void updateProgressLevel(Level level, Word word, int value) {
-        Integer val = levels[level.toInteger()].map.putIfAbsent(word, value);
-        if (val != null) {
-            level.map.replace(word, levels[level.toInteger()].map.get(word) + value);
-        }
+        int oldValue = levels[level.toInteger()].map.get(word);
+        levels[level.toInteger()].map.replace(word, oldValue + value);
     }
 
     public void resetLevelProgress(Level level) {
         level.setMap(null);
-        level.setMap(new HashMap<>());
+        level.setMap(new LinkedHashMap<>());
     }
 
     public void resetWholeProgress() {
@@ -73,5 +90,17 @@ public class Progress {
             }
         }
         scanner.close();
+    }
+
+    public Word getWeakestWord(Level level, boolean firstWord) {
+        if (firstWord) accessedWordNumber = 0;
+        else accessedWordNumber++;
+
+        Set<Map.Entry<Word, Integer>> entrySet = levels[level.toInteger()].map.entrySet();
+        List<Map.Entry<Word, Integer>> entryList = new ArrayList<Map.Entry<Word, Integer>>(entrySet);
+
+        Map.Entry<Word, Integer> entry = entryList.get(accessedWordNumber % entryList.size());
+
+        return entry.getKey();
     }
 }

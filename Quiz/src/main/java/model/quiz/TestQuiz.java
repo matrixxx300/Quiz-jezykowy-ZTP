@@ -2,6 +2,7 @@ package model.quiz;
 
 import main.MainLauncher;
 import model.Dictionary;
+import model.builder.TestQuizBuilder;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,9 +13,14 @@ import java.util.Scanner;
 public class TestQuiz extends Quiz {
     private int score;
 
-    public TestQuiz(Dictionary dictionary) {
+    public TestQuiz(Dictionary dictionary, int questionsCount) {
         super(dictionary);
         score = 0;
+        TestQuizBuilder testQuizBuilder = new TestQuizBuilder(this.dictionary);
+        for (int i = 0; i < questionsCount; i++) {
+            testQuizBuilder.createQuestion();
+        }
+        this.questions = testQuizBuilder.getQuestions();
     }
 
     public void updateScore() throws FileNotFoundException {

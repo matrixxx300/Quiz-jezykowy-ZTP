@@ -34,7 +34,7 @@ public class LearnClosedQuestionController extends QuestionController {
     @Override
     public void initialize() {
         super.initialize();
-        String[] answerArray = ((ClosedQuestion) this.quiz.getQuestion()).toAnswerArray();
+        String[] answerArray = ((ClosedQuestion) this.quiz.getCurrentQuestion()).toAnswerArray();
 
         buttonA.setText(answerArray[0]);
         buttonB.setText(answerArray[1]);
@@ -43,12 +43,12 @@ public class LearnClosedQuestionController extends QuestionController {
     }
 
     public void checkAnswer(ActionEvent actionEvent) {
-        if (((Button) actionEvent.getSource()).getText().equals(quiz.getQuestion().getCorrectAnswer())) {
+        if (((Button) actionEvent.getSource()).getText().equals(quiz.getCurrentQuestion().getCorrectAnswer())) {
             respondLabel.setText("Poprawna odpowiedź");
-            progress.updateProgressLevel(quiz.getDictionary().getLevel(), quiz.getQuestion().getCorrectWord(), +1);
+            progress.updateProgressLevel(quiz.getDictionary().getLevel(), quiz.getCurrentQuestion().getCorrectWord(), +1);
         } else {
             respondLabel.setText("Błędna odpowiedź");
-            progress.updateProgressLevel(quiz.getDictionary().getLevel(), quiz.getQuestion().getCorrectWord(), -2);
+            progress.updateProgressLevel(quiz.getDictionary().getLevel(), quiz.getCurrentQuestion().getCorrectWord(), -2);
         }
 
     }
