@@ -4,6 +4,11 @@ public class Word {
     private String englishWord;
     private String polishWord;
 
+    public Word(String englishWord, String polishWord) {
+        this.englishWord = englishWord;
+        this.polishWord = polishWord;
+    }
+
     public String getEnglishWord() {
         return englishWord;
     }
@@ -16,9 +21,8 @@ public class Word {
         return english ? englishWord : polishWord;
     }
 
-    public Word(String englishWord, String polishWord) {
-        this.englishWord = englishWord;
-        this.polishWord = polishWord;
+    @Override
+    public String toString() {
+        return englishWord + "=" + polishWord;
     }
-
 }

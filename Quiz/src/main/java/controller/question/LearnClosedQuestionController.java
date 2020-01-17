@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import main.Main;
-import model.Progress;
 import model.question.ClosedQuestion;
 import model.quiz.Quiz;
 
@@ -19,7 +18,8 @@ public class LearnClosedQuestionController extends QuestionController {
     public Button buttonA, buttonB, buttonC, buttonD;
     public Label respondLabel;
 
-    public LearnClosedQuestionController(Quiz quiz, Progress progress) throws IOException {
+    public LearnClosedQuestionController(Quiz quiz) throws IOException {
+        super();
         this.quiz = quiz;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LearnQuiz/ClosedQuestionQuizView.fxml"));

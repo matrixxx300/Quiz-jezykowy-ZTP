@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.Main;
 import model.Dictionary;
-import model.Level;
+import model.progress.Level;
 
 import java.util.Map;
 

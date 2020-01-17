@@ -10,8 +10,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import main.Main;
 import model.Dictionary;
-import model.Level;
-import model.Progress;
+import model.progress.Level;
 import model.question.OpenedQuestion;
 import model.quiz.LearnQuiz;
 
@@ -21,10 +20,10 @@ public class LearnQuizLevelSelectController {
     public Stage window;
     private String selectedLevel;
     private Dictionary dictionary;
-    private Progress progress;
+    //private Progress progress;
 
     public LearnQuizLevelSelectController() throws IOException {
-        this.progress = Progress.getInstance();
+        //this.progress = Progress.getInstance();
         this.selectedLevel = null;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LearnQuiz/LearnQuizLevelSelectView.fxml"));
@@ -45,9 +44,9 @@ public class LearnQuizLevelSelectController {
 
         LearnQuiz learnQuiz = new LearnQuiz(dictionary);
         if (learnQuiz.getQuestion() instanceof OpenedQuestion) {
-            new LearnOpenQuestionController(learnQuiz, progress);
+            new LearnOpenQuestionController(learnQuiz);
         } else {
-            new LearnClosedQuestionController(learnQuiz, progress);
+            new LearnClosedQuestionController(learnQuiz);
         }
     }
 
