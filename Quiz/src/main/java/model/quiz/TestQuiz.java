@@ -25,7 +25,6 @@ public class TestQuiz extends Quiz {
 
     public void updateScore() throws FileNotFoundException {
         File plik = new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource("ranking")).getFile());
-        System.out.println(plik);
         Scanner odczyt = new Scanner(plik);
 
         String[] rankingLevel = new String[6];
@@ -47,11 +46,6 @@ public class TestQuiz extends Quiz {
             }
         }
         odczyt.close();
-
-        for(int i=0;i<6;i++) {
-            System.out.println(rankingLevel[i]);
-            System.out.println(rankingScore[i]);
-        }
 
         PrintWriter zapis = new PrintWriter(plik);
 
