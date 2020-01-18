@@ -66,7 +66,8 @@ public class Progress {
     }
 
     public void saveProgress() throws IOException {
-        FileWriter writer = new FileWriter("Quiz\\src\\main\\resources\\progress");
+        String fileSeparator = System.getProperty("file.separator");
+        FileWriter writer = new FileWriter("Quiz"+fileSeparator+"src"+fileSeparator+"main"+fileSeparator+"resources"+fileSeparator+"progress");
         for (Level level : levels) {
             writer.write("$ " + level.name + "\n");
 
@@ -83,7 +84,8 @@ public class Progress {
 
     public void loadProgress() throws IOException {
         //todo sprawdzić, czy plik istnieje!
-        Scanner scanner = new Scanner(new FileReader("Quiz\\src\\main\\resources\\progress"));
+        String fileSeparator = System.getProperty("file.separator");
+        Scanner scanner = new Scanner(new FileReader("Quiz"+fileSeparator+"src"+fileSeparator+"main"+fileSeparator+"resources"+fileSeparator+"progress"));
         while (scanner.hasNextLine()) {
             String[] levelLine = scanner.nextLine().split(" ");
             Level level = new Level(levelLine[1]);

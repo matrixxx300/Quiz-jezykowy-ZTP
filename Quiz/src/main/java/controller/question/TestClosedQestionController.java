@@ -42,7 +42,7 @@ public class TestClosedQestionController extends QuestionController {
 
     @Override
     public void next() throws Exception {
-        if (quiz.getQuestions().size() == 10) {
+        if (quiz.getCurrentQuestionNumber() == 10) {
             new EndTestQuizController((TestQuiz) quiz);
         } else {
             super.next();
