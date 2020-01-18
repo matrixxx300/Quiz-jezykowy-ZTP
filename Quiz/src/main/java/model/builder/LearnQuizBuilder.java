@@ -26,8 +26,8 @@ public class LearnQuizBuilder extends QuizBuilder {
         Word weakestWord;
 
         do {
+            weakestWord = progress.getWeakestWord(this.dictionary.getLevel(), firstQuestion);
             firstQuestion = false;
-            weakestWord = progress.getWeakestWord(this.dictionary.getLevel(), false);
         } while (isWordInQuiestions(weakestWord));
 
 
@@ -40,7 +40,7 @@ public class LearnQuizBuilder extends QuizBuilder {
     }
 
     private boolean isWordInQuiestions(Word word) {
-        if(this.questions == null) return false;
+        if (this.questions == null) return false;
         for (Question question : this.questions) {
             if (question.getCorrectWord() == word) return true;
         }

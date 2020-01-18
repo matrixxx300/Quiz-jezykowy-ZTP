@@ -4,7 +4,6 @@ import controller.QuizSelectController;
 import controller.level.LearnQuizLevelSelectController;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import model.progress.Progress;
 import model.question.ClosedQuestion;
@@ -13,7 +12,7 @@ import model.quiz.LearnQuiz;
 import model.quiz.Quiz;
 import model.quiz.TestQuiz;
 
-public class QuestionController {
+public abstract class QuestionController {
     public Stage window;
     public Text questionText;
 

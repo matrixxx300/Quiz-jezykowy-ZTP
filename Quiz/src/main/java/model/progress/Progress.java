@@ -67,7 +67,6 @@ public class Progress {
     }
 
     public void updateProgressLevel(Level level, Word word, int value) {
-        //todo wywala błąd jak nie ma pliku ranking
         Integer val = levels[level.toInteger()].map.putIfAbsent(word, value);
         if (val != null) {
             int oldValue = levels[level.toInteger()].map.get(word);
@@ -95,7 +94,7 @@ public class Progress {
 
             HashSet entrySet = new HashSet<>(level.getMap().entrySet());
             ArrayList<Map.Entry<Word, Integer>> entryList = new ArrayList<>(entrySet);
-            entryList.sort(Map.Entry.comparingByValue());
+            //entryList.sort(Map.Entry.comparingByValue());
 
             for (int j = 0; j < level.map.size(); j++) {
                 writer.write(entryList.get(j).getKey() + ":" + entryList.get(j).getValue() + "\n");
@@ -105,7 +104,6 @@ public class Progress {
     }
 
     public void loadProgress() throws IOException {
-        //todo sprawdzić, czy plik istnieje!
         String fileSeparator = System.getProperty("file.separator");
         Scanner scanner = new Scanner(new FileReader(new File(
                 Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource("progress")).getFile())));
@@ -115,9 +113,7 @@ public class Progress {
             while (scanner.hasNextLine() && !scanner.hasNext("\\$")) {
                 String line = scanner.nextLine();
                 String[] columns = line.split("[=:]");
-                updateProgressLevel(level,new Word(columns[0], columns[1]),Integer.parseInt(columns[2]));
-                //todo del
-                //levels[level.toInteger()].map.put(, );
+                updateProgressLevel(level, new Word(columns[0], columns[1]), Integer.parseInt(columns[2]));
             }
         }
         scanner.close();
@@ -130,8 +126,16 @@ public class Progress {
         Set<Map.Entry<Word, Integer>> entrySet = levels[level.toInteger()].map.entrySet();
         List<Map.Entry<Word, Integer>> entryList = new ArrayList<Map.Entry<Word, Integer>>(entrySet);
 
-        Map.Entry<Word, Integer> entry = entryList.get(accessedWordNumber % entryList.size());
 
+        entryList.sort(new Comparator<Map.Entry<Word, Integer>>() {
+            @Override
+            public int compare(Map.Entry<Word, Integer> wordIntegerEntry, Map.Entry<Word, Integer> t1) {
+                if (wordIntegerEntry.getValue().intValue() > t1.getValue().intValue()) return 1;
+                else if (wordIntegerEntry.getValue().intValue() < t1.getValue().intValue()) return -1;
+                else return 0;
+            }
+        });
+        Map.Entry<Word, Integer> entry = entryList.get(accessedWordNumber % entryList.size());
         return entry.getKey();
     }
 }

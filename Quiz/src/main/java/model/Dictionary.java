@@ -12,7 +12,7 @@ public class Dictionary implements Iterable {
     private Level level;
     private List<Word> wordList;
 
-    public Dictionary(Level level)  {
+    public Dictionary(Level level) {
         this.level = level;
 
         Scanner scanner = null;
@@ -24,8 +24,7 @@ public class Dictionary implements Iterable {
                             )
                     )
             );
-        } catch (FileNotFoundException e) {
-            //todo obsłużyć wyjątek
+        } catch (FileNotFoundException ignore) {
         }
         wordList = new LinkedList<>();
         String line;
@@ -75,7 +74,7 @@ public class Dictionary implements Iterable {
 
             @Override
             public boolean hasNext() {
-                return before<wordList.size();
+                return before < wordList.size();
             }
 
             @Override
@@ -84,9 +83,9 @@ public class Dictionary implements Iterable {
             }
 
             @Override
-            public void remove(){
+            public void remove() {
                 for (int i = 0; i <= wordList.size(); i++) {
-                    if(this.before-1 == i){
+                    if (this.before - 1 == i) {
                         wordList.remove(i);
                     }
                 }

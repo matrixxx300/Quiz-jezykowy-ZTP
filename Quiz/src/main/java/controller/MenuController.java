@@ -44,12 +44,6 @@ public class MenuController {
         window.show();
     }
 
-    public void developerTools(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/DeveloperView.fxml"));
-        window.setScene(new Scene(root));
-        window.show();
-    }
-
     public void exit(ActionEvent actionEvent) {
         System.exit(1);
     }
