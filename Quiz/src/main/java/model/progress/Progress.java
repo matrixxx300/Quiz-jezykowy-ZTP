@@ -3,6 +3,7 @@ package model.progress;
 import model.Dictionary;
 import model.Word;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -31,11 +32,16 @@ public class Progress {
                     updateProgressLevel(level, word, 0);
                 }
             }
+
+            String fileSeparator = System.getProperty("file.separator");
+            File progressFile = new File("Quiz" + fileSeparator + "src" + fileSeparator + "main" + fileSeparator + "resources" + fileSeparator + "progress.txt");
+
             try {
+                progressFile.createNewFile();
                 saveProgress();
-            } catch (IOException e2) {
-                //todo obsłużyć wyjątki
+            } catch (IOException ignore) {
             }
+
         }
 
         accessedWordNumber = 0;
@@ -66,7 +72,9 @@ public class Progress {
     }
 
     public void saveProgress() throws IOException {
-        FileWriter writer = new FileWriter("Quiz\\src\\main\\resources\\progress");
+        String fileSeparator = System.getProperty("file.separator");
+
+        FileWriter writer = new FileWriter("Quiz" + fileSeparator + "src" + fileSeparator + "main" + fileSeparator + "resources" + fileSeparator + "progress.txt");
         for (Level level : levels) {
             writer.write("$ " + level.name + "\n");
 
@@ -83,7 +91,8 @@ public class Progress {
 
     public void loadProgress() throws IOException {
         //todo sprawdzić, czy plik istnieje!
-        Scanner scanner = new Scanner(new FileReader("Quiz\\src\\main\\resources\\progress"));
+        String fileSeparator = System.getProperty("file.separator");
+        Scanner scanner = new Scanner(new FileReader("Quiz" + fileSeparator + "src" + fileSeparator + "main" + fileSeparator + "resources" + fileSeparator + "progress.txt"));
         while (scanner.hasNextLine()) {
             String[] levelLine = scanner.nextLine().split(" ");
             Level level = new Level(levelLine[1]);
