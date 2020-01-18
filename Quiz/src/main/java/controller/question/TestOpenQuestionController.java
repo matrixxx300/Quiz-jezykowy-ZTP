@@ -33,7 +33,7 @@ public class TestOpenQuestionController extends QuestionController {
         if (answerTextField.getText().equals(quiz.getCurrentQuestion().getCorrectAnswer())) {
             ((TestQuiz) (quiz)).incrementScore(1);
         }
-        if (quiz.getCurrentQuestionNumber() == 10) {
+        if (quiz.getCurrentQuestionNumber() + 1 == 10) {
             new EndTestQuizController((TestQuiz) quiz);
         } else {
             super.next();
