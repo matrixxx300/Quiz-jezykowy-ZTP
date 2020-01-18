@@ -3,6 +3,7 @@ package model.progress;
 import model.Dictionary;
 import model.Word;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -31,11 +32,16 @@ public class Progress {
                     updateProgressLevel(level, word, 0);
                 }
             }
+
+            String fileSeparator = System.getProperty("file.separator");
+            File progressFile = new File("Quiz" + fileSeparator + "src" + fileSeparator + "main" + fileSeparator + "resources" + fileSeparator + "progress.txt");
+
             try {
+                progressFile.createNewFile();
                 saveProgress();
-            } catch (IOException e2) {
-                //todo obsłużyć wyjątki
+            } catch (IOException ignore) {
             }
+
         }
 
         accessedWordNumber = 0;
