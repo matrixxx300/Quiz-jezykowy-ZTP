@@ -13,8 +13,16 @@ public class Word {
         return englishWord;
     }
 
+    public void setEnglishWord(String englishWord) {
+        this.englishWord = englishWord;
+    }
+
     public String getPolishWord() {
         return polishWord;
+    }
+
+    public void setPolishWord(String polishWord) {
+        this.polishWord = polishWord;
     }
 
     public String getAppropriateWord(boolean english) {
@@ -26,11 +34,16 @@ public class Word {
         return englishWord + "=" + polishWord;
     }
 
-    public void setEnglishWord(String englishWord) {
-        this.englishWord = englishWord;
+    @Override
+    public boolean equals(Object obj) {
+        super.equals(obj);
+        return this.englishWord.equals(((Word) obj).englishWord);
     }
 
-    public void setPolishWord(String polishWord) {
-        this.polishWord = polishWord;
+    @Override
+    public int hashCode() {
+        int result;
+        result = englishWord.hashCode() / 11;
+        return result;
     }
 }

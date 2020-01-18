@@ -24,26 +24,30 @@ public class Progress {
                 new Level("C1"),
                 new Level("C2")
         };
+
+        for (Level level : levels) {
+            Dictionary dictionary = new Dictionary(level);
+            for (Word word : dictionary.getWordList()) {
+                updateProgressLevel(level, word, 0);
+            }
+        }
         try {
             loadProgress();
         } catch (IOException e) {
-            for (Level level : levels) {
-                Dictionary dictionary = new Dictionary(level);
-                for (Word word : dictionary.getWordList()) {
-                    updateProgressLevel(level, word, 0);
-                }
-            }
+            initializeProgress();
 
             String fileSeparator = System.getProperty("file.separator");
             File progressFile = new File(
-                            Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource("progress")).getFile());
+                    Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource("progress")).getFile());
 
             try {
                 progressFile.createNewFile();
                 saveProgress();
             } catch (IOException ignore) {
             }
-
+            if (this.levels[0] == null) {
+                initializeProgress();
+            }
         }
 
         accessedWordNumber = 0;
@@ -51,6 +55,15 @@ public class Progress {
 
     public static Progress getInstance() {
         return Progress.instance;
+    }
+
+    private void initializeProgress() {
+        for (Level level : levels) {
+            Dictionary dictionary = new Dictionary(level);
+            for (Word word : dictionary.getWordList()) {
+                updateProgressLevel(level, word, 0);
+            }
+        }
     }
 
     public void updateProgressLevel(Level level, Word word, int value) {
@@ -76,7 +89,7 @@ public class Progress {
     public void saveProgress() throws IOException {
         String fileSeparator = System.getProperty("file.separator");
         FileWriter writer = new FileWriter(new File(
-                Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource("progress")).getFile()));
+                Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource("progress")).getFile()), false);
         for (Level level : levels) {
             writer.write("$ " + level.name + "\n");
 
@@ -94,14 +107,17 @@ public class Progress {
     public void loadProgress() throws IOException {
         //todo sprawdzić, czy plik istnieje!
         String fileSeparator = System.getProperty("file.separator");
-        Scanner scanner = new Scanner(new FileReader("Quiz"+fileSeparator+"src"+fileSeparator+"main"+fileSeparator+"resources"+fileSeparator+ "progress"));
+        Scanner scanner = new Scanner(new FileReader(new File(
+                Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource("progress")).getFile())));
         while (scanner.hasNextLine()) {
             String[] levelLine = scanner.nextLine().split(" ");
             Level level = new Level(levelLine[1]);
             while (scanner.hasNextLine() && !scanner.hasNext("\\$")) {
                 String line = scanner.nextLine();
                 String[] columns = line.split("[=:]");
-                levels[level.toInteger()].map.put(new Word(columns[0], columns[1]), Integer.parseInt(columns[2]));
+                updateProgressLevel(level,new Word(columns[0], columns[1]),Integer.parseInt(columns[2]));
+                //todo del
+                //levels[level.toInteger()].map.put(, );
             }
         }
         scanner.close();
