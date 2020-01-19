@@ -12,10 +12,12 @@ abstract class QuizBuilder {
     protected Progress progress;
 
     public QuizBuilder(Dictionary dictionary) {
-        this.questions = new LinkedList<Question>();
+        this.questions = new LinkedList<>();
         this.dictionary = dictionary;
         this.progress = Progress.getInstance();
     }
+
+    public abstract void createQuestions();
 
     public abstract void createQuestion();
 

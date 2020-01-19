@@ -45,7 +45,7 @@ public class TestQuizLevelSelectController {
         this.selectedLevel = ((Button) actionEvent.getSource()).getText();
         this.dictionary = new Dictionary(new Level(this.selectedLevel));
 
-        TestQuiz testQuiz = new TestQuiz(dictionary, 10);
+        TestQuiz testQuiz = new TestQuiz(dictionary);
         if (testQuiz.getCurrentQuestion() instanceof OpenedQuestion) {
             new TestOpenQuestionController(testQuiz);
         } else {
