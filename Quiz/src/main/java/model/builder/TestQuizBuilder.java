@@ -14,6 +14,14 @@ public class TestQuizBuilder extends QuizBuilder {
     }
 
     @Override
+    public void createQuestions() {
+        int questionCount = 10;
+        for (int i = 0; i < questionCount; i++) {
+            createQuestion();
+        }
+    }
+
+    @Override
     public void createQuestion() {
         Question question;
         Random random = new Random();

@@ -13,13 +13,12 @@ import java.util.Scanner;
 public class TestQuiz extends Quiz {
     private int score;
 
-    public TestQuiz(Dictionary dictionary, int questionsCount) {
+    public TestQuiz(Dictionary dictionary) {
         super(dictionary);
         score = 0;
+
         TestQuizBuilder testQuizBuilder = new TestQuizBuilder(this.dictionary);
-        for (int i = 0; i < questionsCount; i++) {
-            testQuizBuilder.createQuestion();
-        }
+        testQuizBuilder.createQuestions();
         this.questions = testQuizBuilder.getQuestions();
     }
 
@@ -33,11 +32,11 @@ public class TestQuiz extends Quiz {
         String helpLevel;
         String helpScore;
 
-        for(int i=0; i<6;i++){
-            if(odczyt.hasNextLine()) {
+        for (int i = 0; i < 6; i++) {
+            if (odczyt.hasNextLine()) {
                 helpLevel = odczyt.nextLine();
                 helpScore = odczyt.nextLine();
-                if (helpLevel.equals(dictionary.getLevel().getName()) && Integer.parseInt(helpScore)<score) {
+                if (helpLevel.equals(dictionary.getLevel().getName()) && Integer.parseInt(helpScore) < score) {
                     helpLevel = dictionary.getLevel().getName();
                     helpScore = Integer.toString(score);
                 }
@@ -49,7 +48,7 @@ public class TestQuiz extends Quiz {
 
         PrintWriter zapis = new PrintWriter(plik);
 
-        for(int i=0;i<6;i++){
+        for (int i = 0; i < 6; i++) {
             zapis.println(rankingLevel[i]);
             zapis.println(rankingScore[i]);
         }
