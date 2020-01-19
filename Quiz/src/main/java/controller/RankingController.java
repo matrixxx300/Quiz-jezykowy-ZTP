@@ -23,6 +23,11 @@ public class RankingController {
         new MenuController();
     }
 
+    public void reset() throws Exception {
+        rankingModel.resetRanking();
+        rankingModel.setList(list);
+    }
+
     public void sortByPoints() {
         rankingModel.setSortingByPoints();
         rankingModel.setList(list);

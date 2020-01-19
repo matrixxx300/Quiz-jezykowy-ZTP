@@ -7,6 +7,7 @@ import main.MainLauncher;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -22,7 +23,6 @@ public class Ranking {
 
         rankingList = FXCollections.observableArrayList();
 
-        System.out.println(plik);
         for(int i=0; i<6;i++){
             if(odczyt.hasNextLine()) {
                 levels[i] = odczyt.nextLine();
@@ -35,6 +35,30 @@ public class Ranking {
         setSortingByLevel();
 
         odczyt.close();
+    }
+
+    public void resetRanking() throws FileNotFoundException {
+        File plik = new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource("ranking")).getFile());
+        Scanner odczyt = new Scanner(plik);
+
+        for (int i = 0; i < 6; i++) {
+            if (odczyt.hasNextLine()) {
+                levels[i] = odczyt.nextLine();
+                odczyt.nextLine();
+                scores[i] = 0;
+                String zdanie = levels[i] + " - " + scores[i] + "/10";
+                rankingList.set(i,zdanie);
+            }
+        }
+        odczyt.close();
+
+        PrintWriter zapis = new PrintWriter(plik);
+
+        for (int i = 0; i < 6; i++) {
+            zapis.println(levels[i]);
+            zapis.println(scores[i]);
+        }
+        zapis.close();
     }
 
     public void setList(ListView list) {
