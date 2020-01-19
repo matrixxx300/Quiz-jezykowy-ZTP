@@ -24,7 +24,7 @@ public class TestClosedQestionController extends QuestionController {
         loader.setController(this);
         window = Main.window;
         window.setScene(new Scene(loader.load()));
-        window.setTitle("Test " + quiz.getDictionary().getLevel().getName() + " - pytanie zamknięte");
+        window.setTitle("Test " + quiz.getDictionaryProxy().getLevel().getName() + " - pytanie zamknięte");
         window.show();
     }
 

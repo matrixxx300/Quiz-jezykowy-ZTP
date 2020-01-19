@@ -1,6 +1,6 @@
 package model.builder;
 
-import model.Dictionary;
+import model.proxy.DictionaryProxy;
 import model.question.ClosedQuestion;
 import model.question.OpenedQuestion;
 import model.question.Question;
@@ -9,8 +9,8 @@ import java.util.Random;
 
 public class TestQuizBuilder extends QuizBuilder {
 
-    public TestQuizBuilder(Dictionary dictionary) {
-        super(dictionary);
+    public TestQuizBuilder(DictionaryProxy dictionaryProxy) {
+        super(dictionaryProxy);
     }
 
     @Override
@@ -28,9 +28,9 @@ public class TestQuizBuilder extends QuizBuilder {
         boolean englishOrPolish = random.nextBoolean();
         boolean openedOrClosed = random.nextBoolean();
         if (openedOrClosed) {
-            question = new OpenedQuestion(dictionary.getRandomWord(), englishOrPolish);
+            question = new OpenedQuestion(dictionaryProxy.getRandomWord(), englishOrPolish);
         } else {
-            question = new ClosedQuestion(dictionary.getRandomWord(), dictionary.getRandomWords(3), englishOrPolish);
+            question = new ClosedQuestion(dictionaryProxy.getRandomWord(), dictionaryProxy.getRandomWords(3), englishOrPolish);
         }
         questions.add(question);
     }

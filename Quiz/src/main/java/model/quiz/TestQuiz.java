@@ -1,7 +1,7 @@
 package model.quiz;
 
 import main.MainLauncher;
-import model.Dictionary;
+import model.proxy.DictionaryProxy;
 import model.builder.TestQuizBuilder;
 
 import java.io.File;
@@ -13,11 +13,11 @@ import java.util.Scanner;
 public class TestQuiz extends Quiz {
     private int score;
 
-    public TestQuiz(Dictionary dictionary) {
-        super(dictionary);
+    public TestQuiz(DictionaryProxy dictionaryProxy) {
+        super(dictionaryProxy);
         score = 0;
 
-        TestQuizBuilder testQuizBuilder = new TestQuizBuilder(this.dictionary);
+        TestQuizBuilder testQuizBuilder = new TestQuizBuilder(this.dictionaryProxy);
         testQuizBuilder.createQuestions();
         this.questions = testQuizBuilder.getQuestions();
     }
@@ -36,8 +36,8 @@ public class TestQuiz extends Quiz {
             if (odczyt.hasNextLine()) {
                 helpLevel = odczyt.nextLine();
                 helpScore = odczyt.nextLine();
-                if (helpLevel.equals(dictionary.getLevel().getName()) && Integer.parseInt(helpScore) < score) {
-                    helpLevel = dictionary.getLevel().getName();
+                if (helpLevel.equals(dictionaryProxy.getLevel().getName()) && Integer.parseInt(helpScore) < score) {
+                    helpLevel = dictionaryProxy.getLevel().getName();
                     helpScore = Integer.toString(score);
                 }
                 rankingLevel[i] = helpLevel;

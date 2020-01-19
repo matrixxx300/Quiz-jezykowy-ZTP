@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import main.Main;
-import model.Dictionary;
+import model.proxy.DictionaryProxy;
 import model.progress.Level;
 import model.question.OpenedQuestion;
 import model.quiz.LearnQuiz;
@@ -19,7 +19,7 @@ import java.io.IOException;
 public class LearnQuizLevelSelectController {
     public Stage window;
     private String selectedLevel;
-    private Dictionary dictionary;
+    private DictionaryProxy dictionaryProxy;
     //private Progress progress;
 
     public LearnQuizLevelSelectController() throws IOException {
@@ -34,15 +34,15 @@ public class LearnQuizLevelSelectController {
         window.show();
     }
 
-    public Dictionary getDictionary() {
-        return dictionary;
+    public DictionaryProxy getDictionaryProxy() {
+        return dictionaryProxy;
     }
 
     public void startLearnQuiz(ActionEvent actionEvent) throws Exception {
         this.selectedLevel = ((Button) actionEvent.getSource()).getText();
-        this.dictionary = new Dictionary(new Level(this.selectedLevel));
+        this.dictionaryProxy = new DictionaryProxy(new Level(this.selectedLevel));
 
-        LearnQuiz learnQuiz = new LearnQuiz(dictionary, 20);
+        LearnQuiz learnQuiz = new LearnQuiz(dictionaryProxy, 20);
         if (learnQuiz.getCurrentQuestion() instanceof OpenedQuestion) {
             new LearnOpenQuestionController(learnQuiz);
         } else {

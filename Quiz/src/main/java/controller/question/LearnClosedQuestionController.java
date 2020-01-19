@@ -26,7 +26,7 @@ public class LearnClosedQuestionController extends QuestionController {
         loader.setController(this);
         this.window = Main.window;
         this.window.setScene(new Scene(loader.load()));
-        this.window.setTitle("Nauka słówek " + quiz.getDictionary().getLevel().getName() + " - pytanie zamknięte");
+        this.window.setTitle("Nauka słówek " + quiz.getDictionaryProxy().getLevel().getName() + " - pytanie zamknięte");
         this.window.show();
     }
 
@@ -45,10 +45,10 @@ public class LearnClosedQuestionController extends QuestionController {
     public void checkAnswer(ActionEvent actionEvent) {
         if (((Button) actionEvent.getSource()).getText().equals(quiz.getCurrentQuestion().getCorrectAnswer())) {
             respondLabel.setText("Poprawna odpowiedź");
-            progress.updateProgressLevel(quiz.getDictionary().getLevel(), quiz.getCurrentQuestion().getCorrectWord(), +1);
+            progress.updateProgressLevel(quiz.getDictionaryProxy().getLevel(), quiz.getCurrentQuestion().getCorrectWord(), +1);
         } else {
             respondLabel.setText("Błędna odpowiedź");
-            progress.updateProgressLevel(quiz.getDictionary().getLevel(), quiz.getCurrentQuestion().getCorrectWord(), -2);
+            progress.updateProgressLevel(quiz.getDictionaryProxy().getLevel(), quiz.getCurrentQuestion().getCorrectWord(), -2);
         }
 
     }

@@ -1,17 +1,17 @@
 package model.quiz;
 
-import model.Dictionary;
+import model.proxy.DictionaryProxy;
 import model.question.Question;
 
 import java.util.LinkedList;
 
 public abstract class Quiz {
     protected LinkedList<Question> questions;
-    protected Dictionary dictionary;
+    protected DictionaryProxy dictionaryProxy;
     protected int currentQuestionNumber;
 
-    public Quiz(Dictionary dictionary) {
-        this.dictionary = dictionary;
+    public Quiz(DictionaryProxy dictionaryProxy) {
+        this.dictionaryProxy = dictionaryProxy;
         currentQuestionNumber = 0;
     }
 
@@ -23,8 +23,8 @@ public abstract class Quiz {
         return questions;
     }
 
-    public Dictionary getDictionary() {
-        return dictionary;
+    public DictionaryProxy getDictionaryProxy() {
+        return dictionaryProxy;
     }
 
     public Question getCurrentQuestion() {

@@ -1,18 +1,20 @@
-package model;
+package model.proxy;
 
 import main.MainLauncher;
+import model.Word;
 import model.progress.Level;
+import model.proxy.Dictionary;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 
-public class Dictionary implements Iterable {
+public class DictionaryOrginal implements Iterable, Dictionary {
     private Level level;
     private List<Word> wordList;
 
-    public Dictionary(Level level) {
+    public DictionaryOrginal(Level level) {
         this.level = level;
 
         Scanner scanner = null;
@@ -43,9 +45,7 @@ public class Dictionary implements Iterable {
         return wordList;
     }
 
-    public Level getLevel() {
-        return level;
-    }
+
 
     public Word getRandomWord() {
         HashSet<Word> set = new HashSet(this.getWordList());

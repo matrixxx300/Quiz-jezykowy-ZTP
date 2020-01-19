@@ -24,7 +24,7 @@ public class TestOpenQuestionController extends QuestionController {
         loader.setController(this);
         this.window = Main.window;
         this.window.setScene(new Scene(loader.load()));
-        this.window.setTitle("Test " + quiz.getDictionary().getLevel().getName() + " - pytanie otwarte");
+        this.window.setTitle("Test " + quiz.getDictionaryProxy().getLevel().getName() + " - pytanie otwarte");
         this.window.show();
     }
 

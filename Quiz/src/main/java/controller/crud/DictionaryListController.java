@@ -1,6 +1,5 @@
 package controller.crud;
 
-import controller.MenuController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import main.Main;
-import model.Dictionary;
+import model.proxy.DictionaryProxy;
 import model.Word;
 
 import java.util.ArrayList;
@@ -23,15 +22,15 @@ public class DictionaryListController {
     public ListView<String> list;
     public ArrayList<String> array;
 
-    private Dictionary dictionary;
+    private DictionaryProxy dictionaryProxy;
 
     @FXML
     public void initialize() {
         this.window = Main.window;
     }
 
-    void setDictionary(Dictionary dictionary) {
-        this.dictionary = dictionary;
+    void setDictionaryProxy(DictionaryProxy dictionaryProxy) {
+        this.dictionaryProxy = dictionaryProxy;
     }
 
     public void back(ActionEvent actionEvent) throws Exception {
@@ -43,7 +42,7 @@ public class DictionaryListController {
 
     public void loadList() {
         array = new ArrayList<>();
-        Iterator<Word> it = dictionary.iterator();
+        Iterator<Word> it = dictionaryProxy.iterator();
         Word word;
         while (it.hasNext()) {
             word = it.next();

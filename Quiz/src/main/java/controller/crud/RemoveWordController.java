@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import main.Main;
 import main.MainLauncher;
-import model.Dictionary;
+import model.proxy.DictionaryProxy;
 import model.Word;
 
 import java.io.File;
@@ -21,7 +21,7 @@ import java.util.Objects;
 
 public class RemoveWordController {
     public Stage window;
-    private Dictionary dictionary;
+    private DictionaryProxy dictionaryProxy;
 
     @FXML
     public TextField wordTextField;
@@ -39,7 +39,7 @@ public class RemoveWordController {
             resultLabel.setText("Pole nie moze być puste!");
             return;
         }
-        Iterator<Word> it = dictionary.iterator();
+        Iterator<Word> it = dictionaryProxy.iterator();
         Word word;
         while (it.hasNext()) {
             word = it.next();
@@ -54,12 +54,12 @@ public class RemoveWordController {
     }
 
     private void saveEditedDictionary() throws IOException {
-        FileWriter writer = new FileWriter(new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource(dictionary.getLevel().getName() + "dictionary")).getFile()), false);
-        for (int i = 0; i < dictionary.getWordList().size(); i++) {
-            writer.write(dictionary.getWordList().get(i).getEnglishWord() + "=" + dictionary.getWordList().get(i).getPolishWord() + "\n");
+        FileWriter writer = new FileWriter(new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource(dictionaryProxy.getLevel().getName() + "dictionaryProxy")).getFile()), false);
+        for (int i = 0; i < dictionaryProxy.getWordList().size(); i++) {
+            writer.write(dictionaryProxy.getWordList().get(i).getEnglishWord() + "=" + dictionaryProxy.getWordList().get(i).getPolishWord() + "\n");
         }
         writer.close();
-        dictionary = new Dictionary(dictionary.getLevel());
+        dictionaryProxy = new DictionaryProxy(dictionaryProxy.getLevel());
     }
 
     public void back(ActionEvent actionEvent) throws Exception {
@@ -69,8 +69,8 @@ public class RemoveWordController {
         window.show();
     }
 
-    public void setDictionary(Dictionary dictionary) {
-        this.dictionary = dictionary;
+    public void setDictionaryProxy(DictionaryProxy dictionaryProxy) {
+        this.dictionaryProxy = dictionaryProxy;
     }
 }
 

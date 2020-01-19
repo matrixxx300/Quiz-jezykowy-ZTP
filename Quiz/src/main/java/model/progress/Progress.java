@@ -1,7 +1,7 @@
 package model.progress;
 
 import main.MainLauncher;
-import model.Dictionary;
+import model.proxy.DictionaryProxy;
 import model.Word;
 
 import java.io.File;
@@ -26,8 +26,8 @@ public class Progress {
         };
 
         for (Level level : levels) {
-            Dictionary dictionary = new Dictionary(level);
-            for (Word word : dictionary.getWordList()) {
+            DictionaryProxy dictionaryProxy = new DictionaryProxy(level);
+            for (Word word : dictionaryProxy.getWordList()) {
                 updateProgressLevel(level, word, 0);
             }
         }
@@ -59,8 +59,8 @@ public class Progress {
 
     private void initializeProgress() {
         for (Level level : levels) {
-            Dictionary dictionary = new Dictionary(level);
-            for (Word word : dictionary.getWordList()) {
+            DictionaryProxy dictionaryProxy = new DictionaryProxy(level);
+            for (Word word : dictionaryProxy.getWordList()) {
                 updateProgressLevel(level, word, 0);
             }
         }

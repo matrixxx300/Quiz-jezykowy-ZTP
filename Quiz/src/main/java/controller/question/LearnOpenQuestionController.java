@@ -23,17 +23,17 @@ public class LearnOpenQuestionController extends QuestionController {
         loader.setController(this);
         this.window = Main.window;
         this.window.setScene(new Scene(loader.load()));
-        this.window.setTitle("Nauka słówek " + quiz.getDictionary().getLevel().getName() + " - pytanie otwarte");
+        this.window.setTitle("Nauka słówek " + quiz.getDictionaryProxy().getLevel().getName() + " - pytanie otwarte");
         this.window.show();
     }
 
     public void check() {
         if (answerTextField.getText().equals(quiz.getCurrentQuestion().getCorrectAnswer())) {
             respondLabel.setText("Poprawna odpowiedź");
-            progress.updateProgressLevel(quiz.getDictionary().getLevel(), quiz.getCurrentQuestion().getCorrectWord(), +2);
+            progress.updateProgressLevel(quiz.getDictionaryProxy().getLevel(), quiz.getCurrentQuestion().getCorrectWord(), +2);
         } else {
             respondLabel.setText("Błędna odpowiedź");
-            progress.updateProgressLevel(quiz.getDictionary().getLevel(), quiz.getCurrentQuestion().getCorrectWord(), -1);
+            progress.updateProgressLevel(quiz.getDictionaryProxy().getLevel(), quiz.getCurrentQuestion().getCorrectWord(), -1);
         }
     }
 }
