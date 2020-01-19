@@ -47,7 +47,7 @@ public class AddWordController {
         if (polishTextField.getText().equals("") || englishTextField.getText().equals("")) {
             resultLabel.setText("Pola nie mogą być puste!");
         } else {
-            FileWriter writer = new FileWriter(new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource(dictionaryProxy.getLevel().getName() + "dictionaryProxy")).getFile()), true);
+            FileWriter writer = new FileWriter(new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource(dictionaryProxy.getLevel().getName() + "dictionary")).getFile()), true);
             writer.write(englishTextField.getText() + "=" + polishTextField.getText() + "\n");
             resultLabel.setText("Dodano słowo.");
             writer.close();

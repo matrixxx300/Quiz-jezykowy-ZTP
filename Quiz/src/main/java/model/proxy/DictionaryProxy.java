@@ -22,6 +22,7 @@ public class DictionaryProxy implements Dictionary {
         return dictionary.getWordList();
     }
 
+
     public Level getLevel() {
         return level;
     }

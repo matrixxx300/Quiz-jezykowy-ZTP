@@ -54,7 +54,7 @@ public class RemoveWordController {
     }
 
     private void saveEditedDictionary() throws IOException {
-        FileWriter writer = new FileWriter(new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource(dictionaryProxy.getLevel().getName() + "dictionaryProxy")).getFile()), false);
+        FileWriter writer = new FileWriter(new File(Objects.requireNonNull(MainLauncher.class.getClassLoader().getResource(dictionaryProxy.getLevel().getName() + "dictionary")).getFile()), false);
         for (int i = 0; i < dictionaryProxy.getWordList().size(); i++) {
             writer.write(dictionaryProxy.getWordList().get(i).getEnglishWord() + "=" + dictionaryProxy.getWordList().get(i).getPolishWord() + "\n");
         }

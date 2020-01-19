@@ -41,12 +41,13 @@ public class DictionaryOrginal implements Iterable, Dictionary {
         scanner.close();
     }
 
+    @Override
     public List<Word> getWordList() {
         return wordList;
     }
 
 
-
+    @Override
     public Word getRandomWord() {
         HashSet<Word> set = new HashSet(this.getWordList());
         int size = set.size();
@@ -59,6 +60,7 @@ public class DictionaryOrginal implements Iterable, Dictionary {
         return null;
     }
 
+    @Override
     public Word[] getRandomWords(int wordsNumber) {
         Word[] randomWords = new Word[wordsNumber];
         for (int j = 0; j < wordsNumber; j++) {
